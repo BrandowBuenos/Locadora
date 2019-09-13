@@ -1,0 +1,74 @@
+import java.util.ArrayList;
+
+/**
+ * Clientes
+ */
+public class ClientesController implements IClientes {
+
+    public ArrayList<Cliente> listaDeClientes;
+
+    public ClientesController() {
+        listaDeClientes = new ArrayList();
+    }
+
+    public void add(Cliente c) {
+        listaDeClientes.add(c);
+    }
+
+    public Cliente get(long CPF) {
+        for (Cliente cliente : listaDeClientes) {
+            if (cliente.getCpf() == CPF) {
+                return cliente;
+            }
+
+        }
+        return null;
+    }
+
+    public String getInfo(long CPF) {
+
+        for (Cliente cliente : listaDeClientes) {
+            if (cliente.getCpf() == CPF) {
+
+                return cliente.toString2();
+            }
+        }
+        return null;
+    }
+
+    public String getInfo() {
+        String dado = "";
+        for (Cliente cliente : listaDeClientes) {
+            dado += cliente.toString();
+        }
+
+        return dado;
+
+    }
+
+    public String getResumoInfo() {
+        return null;
+    }
+
+    public boolean set(long CPF, Cliente c) {
+        Cliente cliente = get(CPF);
+        return cliente.toString() != null;
+    }
+
+    public boolean remove(long CPF) {
+        for (Cliente cliente : listaDeClientes) {
+            if (cliente.getCpf() == CPF) {
+                listaDeClientes.remove(cliente);
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    public boolean existe(long CPF) {
+        Cliente cliente = get(CPF);
+        return cliente != null;
+    }
+
+}
