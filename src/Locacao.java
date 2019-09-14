@@ -7,7 +7,7 @@ import Veiculos.java;
  * Locacao
  */
 public class Locacao {
-    static int codigodalocacao = 0;
+    int codigodalocacao = 0;
     boolean seguro;
     float valordadiaria;
     Date datainicio;
@@ -18,14 +18,14 @@ public class Locacao {
     }
  
     public int getCodigoDaLocacao () {
-        return this.codigodalocacao;
+        return this.codigodalocacao = codigodalocacao + 1;
     }
 
-    public setValorDaDiaria(float valordadiaria) {
+    public void setValorDaDiaria(float valordadiaria) {
         this.valordadiaria = valordadiaria;
     }
 
-    public getValorDaDiaria() {
+    public float getValorDaDiaria() {
         return this.valordadiaria;
     }
 
