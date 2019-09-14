@@ -10,7 +10,7 @@ public class VeiculosController implements IVeiculos {
         listaDeVeiculos = new ArrayList();
     }
 
-    public void add(Veiculo v) {
+    public void add(Veiculo v) { //OK
         listaDeVeiculos.add(v);
     }
 
@@ -37,19 +37,28 @@ public class VeiculosController implements IVeiculos {
     public String getInfo() {
         String dado = "";
         for (Veiculo veiculo : listaDeVeiculos) {
-            dado += veiculo.toString();
+            dado += veiculo.toString2();
         }
 
         return dado;
     }
 
     public String getResumoInfo() {
-        return null;
+        String dado = "";
+        for (Veiculo veiculo : listaDeVeiculos) {
+            dado += veiculo.toString();
+        }
+
+        return dado;
     }
 
     public boolean set(String placa, Veiculo v) {
-        Veiculo veiculo = get(placa);
-        return veiculo.toString() != null;
+        Veiculo veiculoAntigo = get(placa);
+        if(get(placa) != null){
+            veiculoAntigo = v;
+            return  true;
+        }
+        return false;
     }
 
     public boolean remove(String placa) {
@@ -61,6 +70,7 @@ public class VeiculosController implements IVeiculos {
         }
         return false;
     }
+
 
     public boolean existe(String placa) {
         Veiculo veiculo = get(placa);

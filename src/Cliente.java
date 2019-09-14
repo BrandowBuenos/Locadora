@@ -71,6 +71,6 @@ public class Cliente {
 
         return "\n- Nome: " + this.getNome() + "\n" + "- CPF: " + this.getCpf() + "\n" + "- Carteira de motorista: "
                 + this.getNumeroDaCarteiraDeMotorista() + "\n" + "- Endereço: " + this.getEndereco() + "\n"
-                + "- Telfone: " + this.getTelefone() + "\n";
+                + "- Telefone: " + this.getTelefone() + "\n";
     }
 }

@@ -7,14 +7,18 @@ import Veiculos.java;
  * Locacao
  */
 public class Locacao {
-    static int codigodalocacao;
+    static int codigodalocacao = 0;
     boolean seguro;
     float valordadiaria;
     Date datainicio;
     Date datafinal;
 
-    Public Locacao() {
+    public Locacao() {
 
+    }
+ 
+    public int getCodigoDaLocacao () {
+        return this.codigodalocacao;
     }
 
     public setValorDaDiaria(float valordadiaria) {

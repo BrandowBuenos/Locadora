@@ -14,7 +14,7 @@ public interface IClientes {
      * @param CPF CPF do cliente a ser capturado.
      * @return Cliente com o CPF informado ou null caso o CPF não for encontrado.
      */
-    public Cliente get(long CPF); //OK
+    public Cliente get(long CPF); //Não feito na Main 
     
     /**
      * Captura uma String com as informaçoes do cliente com CPF informado por parâmetro.
@@ -22,7 +22,7 @@ public interface IClientes {
      * @return String com as informaçoes do cliente com o CPF informado por parâmetro 
      * ou null caso o CPF não for encontrado.
      */
-    public String getInfo(long CPF);
+    public String getInfo(long CPF); // OK
     
     /**
      * Captura uma String com as informaçoes de todos os clientes.
@@ -36,7 +36,7 @@ public interface IClientes {
      * @return String com o CPF e o nome de todos os clientes
      * ou null caso não exista nenhum cliente.
      */
-    public String getResumoInfo();
+    public String getResumoInfo(); // OK
     
     /**
      * Modifica as informações do cliente com o CPF informado por parâmetro.
@@ -53,7 +53,7 @@ public interface IClientes {
      * @return True se o cliente com o CPF informado por parâmetro for removido ou
      * false caso não exista nenhum cliente com o CPF informado. 
      */
-    public boolean remove(long CPF);
+    public boolean remove(long CPF); // OK
     
     /**
      * Verifica se existe um cliente com o CPF informado por parâmetro.
@@ -61,5 +61,5 @@ public interface IClientes {
      * @return True se um cliente com o CPF informado for encontrado ou 
      * false caso não exista nenhum cliente com o CPF informado.
      */
-    public boolean existe(long CPF);
+    public boolean existe(long CPF); // Não feito na main
 }

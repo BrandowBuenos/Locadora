@@ -44,6 +44,12 @@ public class Carro extends Veiculo {
         return this.arcondicionado;
     }
 
-  
+    public String toString() {
+
+        return "\n- Placa: " + getPlaca() + "\n" + "- Ano: " + getAno() + "\n" + "- Valor da diária: " + getDiaria()
+                + "\n" + "- Numero de passageiros: " + this.getNumeroDePassageiros() + "\n" + "- Número de portas: "
+                + this.getNumeroDePortas() + "\n" + "- Média de KM/L: " + this.getMediaDeKml() + "\n"
+                + "- Possuí ar-condicionado ? " + this.getArCondicionado() + "\n";
+    }
 
 }

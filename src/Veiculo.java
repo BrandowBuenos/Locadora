@@ -40,13 +40,8 @@ abstract class Veiculo {
 
     public String toString() {
 
-        return "\n- Placa: " + getPlaca() + "\n" + "- Ano: " + getAno() + "\n";
+        return "\n- Placa: " + getPlaca() + "\n" + "- Ano: " + getAno() + "\n" + "- Diária: " +getDiaria() +"\n";
     }
 
-    public String toString2() {
-
-        return "\n- Placa: " + getPlaca() + "\n" + "- Ano: " + getAno() + "\n" + "- Valor da diária: "
-                + getDiaria() + "\n" + "- Numero de passageiros: " + this.getNumeroDePassageiros() + "\n"
-                + "- Número de portas: " + this.getNumeroDePortas() + "\n" + "- Média de KM/L: " + this.getMediaDeKml() + "\n" + "- Possuí ar-condicionado ? " + this.getArCondicionado();
-    }
+    
 }

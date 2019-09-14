@@ -2,7 +2,7 @@
  * Interface que permite manipular um conjunto de locações.
  * @author Aline
  */
-public interface Locacoes {
+public interface ILocacoes {
     /**
      * Adiciona uma locação na relação de locações.
      * @param l Locação a ser inserido.
