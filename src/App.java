@@ -108,21 +108,25 @@ public class App {
 
             case 14:
                 removerLocacao();
-                
-            case 15:        
+
+            case 15:
                 modificarLocacao();
                 break;
 
-            case 16: 
+            case 16:
                 consultarLocacaoPorCodigo();
                 break;
-                
+
             case 17:
                 exibirTodasLocacao();
-                break;    
+                break;
 
-            case 18: 
+            case 18:
                 verificarSeLocacaoExiste();
+                break;
+
+            case 20:
+                verificarGetDoVeiculo();
                 break;
 
             default:
@@ -271,12 +275,12 @@ public class App {
                     novoCarro.setMediaDeKml(input.nextFloat());
                     input.nextLine();
 
-                    System.out.print("\n- Possuí ar-condicionado? (S ou N) ");
-                    String resposta = input.nextLine();
-                    
-                    if (resposta = 'S') {
+                    System.out.print("- Possuí ar-condicionado? (S ou N) ");
+                    char resposta = Character.toUpperCase(input.next().charAt(0));
+
+                    if (resposta == 'S') {
                         novoCarro.setArCondicionado(true);
-                    } else if (resposta = 'N') {
+                    } else if (resposta == 'N') {
                         novoCarro.setArCondicionado(false);
                     }
                 }
@@ -312,7 +316,7 @@ public class App {
                     novoCaminhao.setNumeroDeEixos(input.nextInt());
                     input.nextLine();
 
-                    System.out.print("\n- Informe a carga máxima: ");
+                    System.out.print("- Informe a carga máxima: ");
                     novoCaminhao.setCargaMaxima(input.nextFloat());
                     input.nextLine();
 
@@ -353,20 +357,23 @@ public class App {
                     novoOnibus.setCategoria(input.next());
                     input.nextLine();
 
-                    /*
-                     * System.out.print("\n- Possuí ar-condicionado? (S ou N) "); String resposta =
-                     * input.nextLine(); if (resposta = 'S') { boolean resposta2 = true; } boolean
-                     * resposta2 = false;
-                     * 
-                     * novoCarro.setArCondicionado(resposta2);
-                     * 
-                     * System.out.print("\n- Possuí ar-condicionado? (S ou N) "); String resposta =
-                     * input.nextLine(); if (resposta = 'S') { boolean resposta2 = true; } boolean
-                     * resposta2 = false;
-                     * 
-                     * novoCarro.setArCondicionado(resposta2);
-                     * 
-                     */
+                    System.out.print("- Possuí ar-condicionado? (S ou N) ");
+                    char resposta = Character.toUpperCase(input.next().charAt(0));
+
+                    if (resposta == 'S') {
+                        novoOnibus.setArCondicionado(true);
+                    } else if (resposta == 'N') {
+                        novoOnibus.setArCondicionado(false);
+                    }
+
+                    System.out.print("- Possuí Internet sem fio? (S ou N) ");
+                    char resposta1 = Character.toUpperCase(input.next().charAt(0));
+
+                    if (resposta1 == 'S') {
+                        novoOnibus.setWifi(true);
+                    } else if (resposta1 == 'N') {
+                        novoOnibus.setWifi(false);
+                    }
                 }
 
                 listaDeVeiculos.add(novoOnibus);
@@ -406,6 +413,13 @@ public class App {
         }
     }
 
+    public static void verificarGetDoVeiculo() {
+
+        System.out.println("\n- Dados do Veículo por Placa - ");
+        System.out.print("+ Informe a Placa: ");
+        System.out.println(listaDeVeiculos.get(input.nextLine()));
+    }
+
     public static void consultarDadosPorPlaca() {
 
         System.out.println("\n- Dados do Veículo por Placa - ");
@@ -424,71 +438,69 @@ public class App {
     /*------------------------------------------------------------------------*/
 
     public static void adicionarNovaLocacao() {
-            Locacao novaLocacao;
-        
-            System.out.println("\n- Adicionar Locação -");
-            System.out.println("\n+ Código ");
-            int codigodalocacao = input.nextInt();
-            input.nextLine();
-            
-            System.out.println("\n+ Valor da diaria");
-           float valordadiaria = input.nextFloat();
-            input.nextLine();
+        Locacao novaLocacao;
 
-            System.out.println("\n+ Data de Início");
-            String date = input.next();
-            input.nextLine();
-            SimpleDateFormat format=new SimpleDateFormat("dd-mm-yyyy");
+        System.out.println("\n- Adicionar Locação -");
+        System.out.print("\n+ Código: ");
+        int codigodalocacao = input.nextInt();
+        input.nextLine();
 
-            Date dateinicio = (Date) format.parse(date);
+        System.out.println("\n+ Valor da diaria");
+        float valordadiaria = input.nextFloat();
+        input.nextLine();
 
-            System.out.println("\n+ Data Final");
-            String date2 = input.next();
-            input.nextLine();
-            SimpleDateFormat format2DateFormat=new SimpleDateFormat("dd-mm-yyyy");
+        System.out.println("\n+ Data de Início");
+        String date = input.next();
+        input.nextLine();
+        SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
 
-            Date datafinal = (Date) format2DateFormat.parse(date2);
+        Date dateinicio = (Date) format.parse(date);
 
-            System.out.println("\n+ O veiculo possui seguro(true ou false)?");
-            boolean seguro = input.nextBoolean();
-            input.nextLine();
-            }     
-        
-        public static void removerLocacao() {
-            System.out.println("\n- Remover Locação- ");
-            System.out.print("+ Informe o código: ");
-            System.out.println("\nRemovido com sucesso? " +listaDeLocacoes.remove(input.nextInt()));
+        System.out.println("\n+ Data Final");
+        String date2 = input.next();
+        input.nextLine();
+        SimpleDateFormat format2DateFormat = new SimpleDateFormat("dd-mm-yyyy");
+
+        Date datafinal = (Date) format2DateFormat.parse(date2);
+
+        System.out.println("\n+ O veiculo possui seguro (true ou false)?");
+        boolean seguro = input.nextBoolean();
+        input.nextLine();
+    }
+
+    public static void removerLocacao() {
+        System.out.println("\n- Remover Locação- ");
+        System.out.print("+ Informe o código: ");
+        System.out.println("\nRemovido com sucesso? " + listaDeLocacoes.remove(input.nextInt()));
+
+    }
+
+    public static void modificarLocacao() {
+
+        System.out.println("\n- Modificar dados da locação- ");
+        System.out.print("+ Informe o código: ");
+        System.out.print("\nDeseja editar esta locação? " + listaDeLocacoes.get(input.nextInt()));
+        int option = input.nextInt();
+        if (option == 1) {
 
         }
+    }
 
-        public static void modificarLocacao() {
-            
-            System.out.println("\n- Modificar dados da locação- ");
-            System.out.print("+ Informe o código: ");
-            System.out.print("\nDeseja editar esta locação? " +listaDeLocacoes.get(input.nextInt()));
-            int option = input.nextInt();
-            if (option == 1) {
-    
-            }
-        }
+    public static void consultarLocacaoPorCodigo() {
+        System.out.println("\n- Dados da Locação por código - ");
+        System.out.print("+ Informe o código: ");
+        System.out.println(listaDeLocacoes.getInfo(input.nextInt()));
+    }
 
-        public static void consultarLocacaoPorCodigo() {
-            System.out.println("\n- Dados da Locação por código - ");
-            System.out.print("+ Informe o código: ");
-            System.out.println(listaDeLocacoes.getInfo(input.nextInt()));
-        }
+    public static void exibirTodasLocacao() {
+        System.out.println(listaDeLocacoes.getInfo());
+    }
 
-        public static void exibirTodasLocacao() {
-            System.out.println(listaDeLocacoes.getInfo());
-        }
-
-        public static void verificarSeLocacaoExiste() {
-            System.out.println("\n- Verificar se a locação existe - ");
-            System.out.print("+ Informe o código: ");
-            System.out.println(listaDeLocacoes.existe(input.nextInt()));
-        }
-    
-
+    public static void verificarSeLocacaoExiste() {
+        System.out.println("\n- Verificar se a locação existe - ");
+        System.out.print("+ Informe o código: ");
+        System.out.println(listaDeLocacoes.existe(input.nextInt()));
+    }
 
     public static void main(String[] args) {
         App.menu();

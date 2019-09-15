@@ -26,4 +26,15 @@ public class Caminhao extends Veiculo {
         return this.cargamaxima;
     }
 
+    public String toString() {
+
+        return "\n+ Caminhão" + super.toString() + "- Número de eixos: " + this.getNumeroDeEixos() + "\n"
+                + "- Carga Máxima: " + this.getCargaMaxima() + "\n";
+    }
+
+    public String toString2() {
+
+        return "\n+ Caminhão" + super.toString();
+    }
+
 }

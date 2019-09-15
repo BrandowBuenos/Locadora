@@ -43,5 +43,10 @@ abstract class Veiculo {
         return "\n- Placa: " + getPlaca() + "\n" + "- Ano: " + getAno() + "\n" + "- Diária: " +getDiaria() +"\n";
     }
 
+    public String toString2() {
+
+        return "\n- Placa: " + getPlaca() + "\n" + "- Ano: " + getAno() + "\n" + "- Diária: " +getDiaria() +"\n";
+    }
+
     
 }
