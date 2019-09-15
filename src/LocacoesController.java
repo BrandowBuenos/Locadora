@@ -11,14 +11,14 @@ public class LocacoesController implements ILocacoes {
         listaDeLocacoes = new ArrayList();
     }
 
-    public void add(Locacao l) {
+    public void add(Locacao l) { //OK
         listaDeLocacoes.add(l);
     }
 
     public Locacao get(int codigo) {
         for (Locacao locacao : listaDeLocacoes) {
             if (locacao.getCodigoDaLocacao() == codigo) {
-                return cliente;
+                return locacao;
             }
 
         }
@@ -44,12 +44,12 @@ public class LocacoesController implements ILocacoes {
 
     }
 
-    public boolean set(int codigo, Locacao l) {
+    public boolean set(int codigo, Locacao l) { //nda ok
         Locacao locacao = get(codigo);
-        return locacao.codigodalocacao() != null;
+        return locacao.getCodigoDaLocacao() != 0;
     }
 
-    public boolean remove(int codigo) {
+    public boolean remove(int codigo) { // OK
         for (Locacao locacao : listaDeLocacoes) {
             if (locacao.getCodigoDaLocacao() == codigo) {
                 listaDeLocacoes.remove(locacao);
@@ -59,7 +59,7 @@ public class LocacoesController implements ILocacoes {
         return false;
     }
 
-    public boolean existe(int codigo) {
+    public boolean existe(int codigo) { // OK
         Locacao locacao = get(codigo);
         return locacao != null;
 

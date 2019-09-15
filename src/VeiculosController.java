@@ -27,7 +27,7 @@ public class VeiculosController implements IVeiculos {
         for (Veiculo veiculo : listaDeVeiculos) {
             if (veiculo.getPlaca() == placa) {
 
-                return veiculo.toString2();
+                return veiculo.toString();
             }
         }
         return null;
@@ -37,7 +37,7 @@ public class VeiculosController implements IVeiculos {
     public String getInfo() {
         String dado = "";
         for (Veiculo veiculo : listaDeVeiculos) {
-            dado += veiculo.toString2();
+            dado += veiculo.toString();
         }
 
         return dado;
