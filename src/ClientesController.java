@@ -20,7 +20,6 @@ public class ClientesController implements IClientes {
             if (cliente.getCpf() == CPF) {
                 return cliente;
             }
-
         }
         return null;
     }
@@ -37,26 +36,28 @@ public class ClientesController implements IClientes {
     public String getInfo() {
         String dado = "";
         for (Cliente cliente : listaDeClientes) {
-            dado += cliente.toString2();
+            dado += cliente.toString();
         }
-
         return dado;
-
     }
 
     public String getResumoInfo() {
         String dado = "";
         for (Cliente cliente : listaDeClientes) {
-            dado += cliente.toString();
+            dado += cliente.toString2();
         }
-
         return dado;
 
     }
 
-    public boolean set(long CPF, Cliente c) { // Fazer
-        Cliente cliente = get(CPF);
-        return cliente.toString() != null;
+    public boolean set(long CPF, Cliente clienteEditado) {
+        for (int i = 0; i < listaDeClientes.size(); i++) {
+            if (clienteEditado.getCpf() == CPF) {
+                listaDeClientes.set(i, clienteEditado);
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean remove(long CPF) {

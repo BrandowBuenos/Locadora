@@ -3,11 +3,11 @@
  */
 public class Cliente {
 
-    String nome;
-    long cpf;
-    double numerodacarteirademotorista;
-    String endereco;
-    double telefone;
+    private String nome;
+    private long cpf;
+    private double numerodacarteirademotorista;
+    private String endereco;
+    private double telefone;
 
     public Cliente(String nome, long cpf) {
         this.nome = nome;
@@ -64,13 +64,14 @@ public class Cliente {
 
     public String toString() {
 
-        return "\n- Nome: " + this.getNome() + "\n" + "- CPF: " + this.getCpf() + "\n";
+        return "\n- Nome: " + this.getNome() + "\n" + "- CPF: " + this.getCpf() + "\n" + "- Carteira de motorista: "
+                + this.getNumeroDaCarteiraDeMotorista() + "\n" + "- Endereço: " + this.getEndereco() + "\n"
+                + "- Telefone: " + this.getTelefone() + "\n";
+
     }
 
     public String toString2() {
 
-        return "\n- Nome: " + this.getNome() + "\n" + "- CPF: " + this.getCpf() + "\n" + "- Carteira de motorista: "
-                + this.getNumeroDaCarteiraDeMotorista() + "\n" + "- Endereço: " + this.getEndereco() + "\n"
-                + "- Telefone: " + this.getTelefone() + "\n";
+        return "\n- Nome: " + this.getNome() + "\n" + "- CPF: " + this.getCpf() + "\n";
     }
 }

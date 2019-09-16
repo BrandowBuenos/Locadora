@@ -2,7 +2,6 @@
  * Onibus
  */
 public class Onibus extends Veiculo {
-
     private int numerodepassageiros;
     private String categoria;
     private boolean wifi;
@@ -32,7 +31,7 @@ public class Onibus extends Veiculo {
         this.wifi = wifi;
     }
 
-    public boolean verificaWifi() {
+    public boolean getWifi() {
         return this.wifi;
     }
 
@@ -45,11 +44,14 @@ public class Onibus extends Veiculo {
     }
 
     public String toString() {
+        return "\n+ Ônibus" + super.toString();
+    }
 
-        return "\n- Placa: " + getPlaca() + "\n" + "- Ano: " + getAno() + "\n" + "- Valor da diária: " + getDiaria()
-                + "\n" + "- Numero de passageiros: " + this.getNumeroDePassageiros() + "\n" + "- Categoria: "
-                + this.getCategoria() + "\n" + "- Wi-fi: " + this.verificaWifi() + "\n"
+    public String toString2() {
+        return "\n+ Ônibus" + super.toString() + "- Numero de passageiros: " + this.getNumeroDePassageiros() + "\n"
+                + "- Categoria: " + this.getCategoria() + "\n" + "- Wi-fi: " + this.getWifi() + "\n"
                 + "- Possuí ar-condicionado ? " + this.verificaArCondicionado() + "\n";
+
     }
 
 }

@@ -44,9 +44,14 @@ public class LocacoesController implements ILocacoes {
 
     }
 
-    public boolean set(int codigo, Locacao l) { //nda ok
-        Locacao locacao = get(codigo);
-        return locacao.getCodigoDaLocacao() != 0;
+    public boolean set(int codigo, Locacao locacaoEditada) { 
+        for (int i = 0; i < listaDeLocacoes.size(); i++) {
+            if (locacaoEditada.getCodigoDaLocacao() == codigo) {
+                listaDeLocacoes.set(i, locacaoEditada);
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean remove(int codigo) { // OK
@@ -64,4 +69,6 @@ public class LocacoesController implements ILocacoes {
         return locacao != null;
 
     }
+
+    
 }

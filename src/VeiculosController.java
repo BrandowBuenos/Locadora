@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+
 /**
  * Veiculos
  */
@@ -10,25 +11,25 @@ public class VeiculosController implements IVeiculos {
         listaDeVeiculos = new ArrayList();
     }
 
-    public void add(Veiculo v) { //OK
+    public void add(Veiculo v) { // OK
         listaDeVeiculos.add(v);
     }
 
     public Veiculo get(String placa) {
-        for (Veiculo veiculo : listaDeVeiculos) {
-            if (veiculo.getPlaca() == placa) {
+        for (Veiculo veiculo : listaDeVeiculos){
+            if (veiculo.getPlaca().equals(placa)) { // Nao funciona ==
                 return veiculo;
             }
         }
         return null;
+
     }
 
     public String getInfo(String placa) {
-        for (Veiculo veiculo : listaDeVeiculos) {
-            if (veiculo.getPlaca() == placa) {
+        Veiculo veiculo = get(placa);
+        if (veiculo != null) {
 
-                return veiculo.toString();
-            }
+            return veiculo.toString2();
         }
         return null;
 
@@ -37,7 +38,7 @@ public class VeiculosController implements IVeiculos {
     public String getInfo() {
         String dado = "";
         for (Veiculo veiculo : listaDeVeiculos) {
-            dado += veiculo.toString();
+            dado += veiculo.toString2();
         }
 
         return dado;
@@ -54,23 +55,23 @@ public class VeiculosController implements IVeiculos {
 
     public boolean set(String placa, Veiculo v) {
         Veiculo veiculoAntigo = get(placa);
-        if(get(placa) != null){
+        if (get(placa) != null) {
+            
             veiculoAntigo = v;
-            return  true;
+            return true;
         }
         return false;
     }
 
     public boolean remove(String placa) {
         for (Veiculo veiculo : listaDeVeiculos) {
-            if (veiculo.getPlaca() == placa) {
+            if (veiculo.getPlaca().equals(placa)) {
                 listaDeVeiculos.remove(veiculo);
                 return true;
             }
         }
         return false;
     }
-
 
     public boolean existe(String placa) {
         Veiculo veiculo = get(placa);

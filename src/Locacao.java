@@ -1,24 +1,36 @@
-import java.util.Date;
-
 import Cliente.java;
-import Veiculos.java;
+import Veiculo.java;
 
 /**
  * Locacao
  */
 public class Locacao {
-    int codigodalocacao = 0;
-    boolean seguro;
-    float valordadiaria;
-    Date datainicio;
-    Date datafinal;
+    private static int nLocacao = 0;
+    private final int codigoLocacao;
 
-    public Locacao() {
+    private Cliente clientelocador;
+    private Veiculo veiculolocado;
+    private String datainicio;
+    private String datafinal;
+    private boolean seguro;
 
+    public Locacao(Cliente clientelocador, Veiculo veiculolocado) {
+        this.clientelocador = clientelocador;
+        this.veiculolocado = veiculolocado;
+        nLocacao++;
+        this.codigoLocacao = nLocacao;
     }
- 
-    public int getCodigoDaLocacao () {
-        return this.codigodalocacao = codigodalocacao + 1;
+
+    public Locacao(Cliente clientelocador, Veiculo veiculolocado, String datainicio, String datafinal, boolean seguro) {
+        this.clientelocador = clientelocador;
+        this.veiculolocado = veiculolocado;
+        this.datainicio = datainicio;
+        this.datafinal = datafinal;
+        this.codigoLocacao = nLocacao;
+    }
+
+    public int getCodigoDaLocacao() {
+        return codigoLocacao;
     }
 
     public void setValorDaDiaria(float valordadiaria) {
@@ -29,24 +41,50 @@ public class Locacao {
         return this.valordadiaria;
     }
 
-    public void setDataInicio(Date datainicio) {
+    public void setDataInicio(String datainicio) {
         this.datainicio = datainicio;
     }
 
-    public Date getDataInicio() {
+    public String getDataInicio() {
         return this.datainicio;
     }
 
-    public void setDataFinal(Date datafinal) {
+    public void setDataFinal(String datafinal) {
         this.datafinal = datafinal;
     }
 
-    public Date getDataFinal() {
+    public String getDataFinal() {
         return this.datafinal;
     }
 
-    public boolean verificaSeguro(boolean seguro) {
+    public void setSeguro(boolean seguro) {
+        this.seguro = seguro;
+    }
+
+    public boolean getSeguro() {
         return this.seguro;
+    }
+
+    public void setClienteLocador(Cliente clientelocador) {
+        this.clientelocador = clientelocador;
+    }
+
+    public Cliente getClienteLocador() {
+        return this.clientelocador;
+    }
+
+    public void setVeiculoLocado(Veiculo veiculolocado) {
+        this.veiculolocado = veiculolocado;
+    }
+
+    public Veiculo getVeiculoLocado() {
+        return this.veiculolocado;
+    }
+
+    public String toString() {
+        return "\n==== Código " + this.getCodigoDaLocacao() + " ====\n" + "+ Cliente: " + getClienteLocador() + "\n"
+                + "- Veículo locado: " + getVeiculoLocado() + "\n" + "+ Data inicio: " + getDataInicio() + "\n"
+                + "+ Data final: " + getDataFinal() + "\n" + "+ Possuí seguro: " + getSeguro() + "\n";
     }
 
 }
