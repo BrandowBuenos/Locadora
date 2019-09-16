@@ -46,14 +46,15 @@ public class Carro extends Veiculo {
 
     public String toString() {
 
-        return "\n+ Carro" + super.toString() + "- Numero de passageiros: " + this.getNumeroDePassageiros() + "\n" + "- Número de portas: "
-                + this.getNumeroDePortas() + "\n" + "- Média de KM/L: " + this.getMediaDeKml() + "\n"
-                + "- Possuí ar-condicionado ? " + this.getArCondicionado() + "\n";
+        return "\n+ Carro" + super.toString();
+
     }
 
     public String toString2() {
 
-        return "\n+ Carro" + super.toString();
+        return "\n+ Carro" + super.toString() + "- Numero de passageiros: " + this.getNumeroDePassageiros() + "\n"
+                + "- Número de portas: " + this.getNumeroDePortas() + "\n" + "- Média de KM/L: " + this.getMediaDeKml()
+                + "\n" + "- Possuí ar-condicionado ? " + this.getArCondicionado() + "\n";
     }
 
 }

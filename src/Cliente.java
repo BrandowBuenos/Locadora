@@ -64,13 +64,14 @@ public class Cliente {
 
     public String toString() {
 
-        return "\n- Nome: " + this.getNome() + "\n" + "- CPF: " + this.getCpf() + "\n";
+        return "\n- Nome: " + this.getNome() + "\n" + "- CPF: " + this.getCpf() + "\n" + "- Carteira de motorista: "
+                + this.getNumeroDaCarteiraDeMotorista() + "\n" + "- Endereço: " + this.getEndereco() + "\n"
+                + "- Telefone: " + this.getTelefone() + "\n";
+
     }
 
     public String toString2() {
 
-        return "\n- Nome: " + this.getNome() + "\n" + "- CPF: " + this.getCpf() + "\n" + "- Carteira de motorista: "
-                + this.getNumeroDaCarteiraDeMotorista() + "\n" + "- Endereço: " + this.getEndereco() + "\n"
-                + "- Telefone: " + this.getTelefone() + "\n";
+        return "\n- Nome: " + this.getNome() + "\n" + "- CPF: " + this.getCpf() + "\n";
     }
 }

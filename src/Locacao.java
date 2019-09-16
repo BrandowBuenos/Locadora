@@ -1,11 +1,10 @@
 import Cliente.java;
-import Veiculos.java;
+import Veiculo.java;
 
 /**
  * Locacao
  */
 public class Locacao {
-
     private static int nLocacao = 0;
     private final int codigoLocacao;
 
@@ -15,10 +14,11 @@ public class Locacao {
     private String datafinal;
     private boolean seguro;
 
-    public Locacao(String clientelocador, String veiculolocado) { // tipos errados
+    public Locacao(Cliente clientelocador, Veiculo veiculolocado) {
+        this.clientelocador = clientelocador;
+        this.veiculolocado = veiculolocado;
         nLocacao++;
         this.codigoLocacao = nLocacao;
-
     }
 
     public int getCodigoDaLocacao() {
@@ -57,8 +57,16 @@ public class Locacao {
         return this.seguro;
     }
 
+    public void setClienteLocador(Cliente clientelocador) {
+        this.clientelocador = clientelocador;
+    }
+
     public Cliente getClienteLocador() {
         return this.clientelocador;
+    }
+
+    public void setVeiculoLocado(Veiculo veiculolocado) {
+        this.veiculolocado = veiculolocado;
     }
 
     public Veiculo getVeiculoLocado() {
@@ -66,9 +74,9 @@ public class Locacao {
     }
 
     public String toString() {
-        return "\n+ Código: " + this.getCodigoDaLocacao() + "\n" + "- Cliente: " + getClienteLocador() + "\n"
-                + "- Veículo locado: " + getVeiculoLocado() + "\n" + "- Data inicio: " + getDataInicio() + "\n"
-                + "- Data final: " + getDataFinal() + "\n" + "- Seguro: " + getSeguro() + "\n";
+        return "\n==== Código " + this.getCodigoDaLocacao() + " ====\n" + "+ Cliente: " + getClienteLocador() + "\n"
+                + "- Veículo locado: " + getVeiculoLocado() + "\n" + "+ Data inicio: " + getDataInicio() + "\n"
+                + "+ Data final: " + getDataFinal() + "\n" + "+ Possuí seguro: " + getSeguro() + "\n";
     }
 
 }

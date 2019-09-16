@@ -44,9 +44,9 @@ public class App {
             System.out.println("14. Remover locação");
             System.out.println("15. Modificar locação");
             System.out.println("16. Consultar locação pelo código");
-            System.out.println("17. Exibir todas as locações");
+            System.out.print("17. Exibir todas as locações");
 
-            System.out.println("0. Sair\n");
+            System.out.println("\n");
 
             System.out.print("+ Informe a opção desejada: ");
             option = input.nextInt();
@@ -133,7 +133,7 @@ public class App {
 
         int option;
         do {
-            System.out.print("- Cadastro de cliente - ");
+            System.out.print("\n- Cadastro de cliente - ");
             System.out.print("\n+ Informe o nome: ");
             String nome = input.nextLine();
 
@@ -143,9 +143,9 @@ public class App {
 
             novoCliente = new Cliente(nome, cpf);
 
-            System.out.println("\n+ Deseja fazer o cadastro completo ?");
-            System.out.println("- Digite 1 para continuar adicionando");
-            System.out.println("- Digite 0 para finalizar o cadastro");
+            System.out.println("\n  Deseja fazer o cadastro completo ?");
+            System.out.println("  Digite 1 para continuar adicionando");
+            System.out.println("  Digite 0 para finalizar o cadastro\n");
             option = input.nextInt();
             input.nextLine();
 
@@ -164,11 +164,11 @@ public class App {
 
             }
             listaDeClientes.add(novoCliente);
-            System.out.println("\nCliente " + novoCliente.getNome() + " cadastrado com sucesso !");
+            System.out.println("\n  Cliente " + novoCliente.getNome() + " cadastrado com sucesso !");
 
-            System.out.println("\n+ Deseja continuar adicionando mais clientes ?");
-            System.out.println("- Digite 1 para continuar adicionando");
-            System.out.println("- Digite 0 para sair do cadastro");
+            System.out.println("\n  Deseja continuar adicionando mais clientes ?");
+            System.out.println("  Digite 1 para continuar adicionando");
+            System.out.println("  Digite 0 para sair do cadastro\n");
             option = input.nextInt();
             input.nextLine();
 
@@ -423,27 +423,27 @@ public class App {
 
     public static void adicionarNovaLocacao() {
         Locacao novaLocacao;
-
+        
         System.out.println("\n- Adicionar Locação -");
 
         System.out.print("+ CPF do cliente: ");
-        String clientelocador = listaDeClientes.getInfo(input.nextLong());
+        Cliente clientelocador = listaDeClientes.get(input.nextLong());
         System.out.println(clientelocador);
         input.nextLine();
 
         System.out.print("+ Placa do veículo: ");
-        String veiculolocado = listaDeVeiculos.getInfo(input.nextLine());
+        Veiculo veiculolocado = listaDeVeiculos.get(input.nextLine());
         System.out.println(veiculolocado);
 
         novaLocacao = new Locacao(clientelocador, veiculolocado);
 
-        System.out.print("\n+ Data de Início: ");
+        System.out.print("+ Data de Início: ");
         novaLocacao.setDataInicio(input.nextLine());
 
-        System.out.print("\n+ Data Final: ");
+        System.out.print("+ Data Final: ");
         novaLocacao.setDataFinal(input.nextLine());
 
-        System.out.println("\n+ Adicionar seguro ? (S ou N)");
+        System.out.print("+ Adicionar seguro ? (S ou N): ");
         char resposta = Character.toUpperCase(input.next().charAt(0));
         if (resposta == 'S') {
             novaLocacao.setSeguro(true);

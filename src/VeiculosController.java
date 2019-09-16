@@ -29,7 +29,7 @@ public class VeiculosController implements IVeiculos {
         Veiculo veiculo = get(placa);
         if (veiculo != null) {
 
-            return veiculo.toString();
+            return veiculo.toString2();
         }
         return null;
 
@@ -38,7 +38,7 @@ public class VeiculosController implements IVeiculos {
     public String getInfo() {
         String dado = "";
         for (Veiculo veiculo : listaDeVeiculos) {
-            dado += veiculo.toString();
+            dado += veiculo.toString2();
         }
 
         return dado;
@@ -47,7 +47,7 @@ public class VeiculosController implements IVeiculos {
     public String getResumoInfo() {
         String dado = "";
         for (Veiculo veiculo : listaDeVeiculos) {
-            dado += veiculo.toString2();
+            dado += veiculo.toString();
         }
 
         return dado;

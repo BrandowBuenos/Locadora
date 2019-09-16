@@ -20,7 +20,6 @@ public class ClientesController implements IClientes {
             if (cliente.getCpf() == CPF) {
                 return cliente;
             }
-
         }
         return null;
     }
@@ -37,19 +36,16 @@ public class ClientesController implements IClientes {
     public String getInfo() {
         String dado = "";
         for (Cliente cliente : listaDeClientes) {
-            dado += cliente.toString2();
+            dado += cliente.toString();
         }
-
         return dado;
-
     }
 
     public String getResumoInfo() {
         String dado = "";
         for (Cliente cliente : listaDeClientes) {
-            dado += cliente.toString();
+            dado += cliente.toString2();
         }
-
         return dado;
 
     }
