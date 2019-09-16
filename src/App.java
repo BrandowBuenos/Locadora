@@ -10,7 +10,6 @@ import java.util.Scanner;
 /**
  * App
  */
-
 public class App {
 
     private static Scanner input = new Scanner(System.in);
@@ -20,6 +19,7 @@ public class App {
 
     public static void menu() {
         int option;
+
         do {
             System.out.println("\nLocadora de veículos");
 
@@ -182,15 +182,34 @@ public class App {
     }
 
     public static void modificarCliente() {
-        Cliente novoCliente;
+        Cliente clienteEditado;
+
         System.out.println("\n- Modificar dados de cliente- ");
-        System.out.print("+ Informe o CPF: ");
 
-        System.out.print("\nDeseja editar este cliente? " + listaDeClientes.get(input.nextLong()));
-        int option = input.nextInt();
-        if (option == 1) {
+        System.out.print("+ CPF do cliente: ");
 
-        }
+        Cliente clienteAntigo = listaDeClientes.get(input.nextLong());
+        System.out.println("\n+ Cliente a ser editado: " + clienteAntigo);
+        input.nextLine();
+
+        System.out.print("+ Novo nome: ");
+        String nome = input.nextLine();
+
+        System.out.print("+ Novo CPF: ");
+        long cpf = input.nextLong();
+
+        System.out.print("+ Número da carteira de motorista: ");
+        double numerodacarteirademotorista = input.nextDouble();
+        input.nextLine();
+
+        System.out.print("+ Novo endereço: ");
+        String endereco = input.nextLine();
+
+        System.out.print("+ Novo número de telefone: ");
+        double telefone = input.nextDouble();
+
+        clienteEditado = new Cliente(nome, cpf, numerodacarteirademotorista, endereco, telefone);
+        System.out.println("\n+ Modificado com sucesso ? " + listaDeClientes.set(cpf, clienteEditado));
     }
 
     public static void consultarDadosPorCPF() {
@@ -208,14 +227,9 @@ public class App {
         System.out.println(listaDeClientes.getInfo());
     }
 
-    public static void verificarSeClienteExiste() {
-        System.out.println("\n- Verificar existência de Cliente - ");
-        System.out.print("+ Informe o CPF: ");
-        System.out.println(listaDeClientes.existe(input.nextLong()));
-
-    }
-
-    /* ------------------------------------------------------- */
+    /*
+     * ----------------------------------------------------------------------------
+     */
 
     public static void cadastrarVeiculo() {
         Veiculo novoVeiculo;
@@ -393,15 +407,35 @@ public class App {
     }
 
     public static void modificarVeiculo() {
-        Veiculo novoVeiculo;
-        System.out.println("\n- Modificar dados de cliente- ");
-        System.out.print("+ Informe o CPF: ");
-
-        System.out.print("\nDeseja editar este cliente? " + listaDeVeiculos.get(input.nextLine()));
-        int option = input.nextInt();
-        if (option == 1) {
-
-        }
+        /*
+         * Veiculo veiculoEditado;
+         * 
+         * System.out.println("\n- Modificar dados de veículo- ");
+         * 
+         * System.out.print("+ Placa do veículo: ");
+         * 
+         * Veiculo veiculoAntigo = listaDeVeiculos.get(input.nextLine());
+         * System.out.println("\nCliente a ser editado: " + clienteAntigo);
+         * input.nextLine();
+         * 
+         * System.out.print("+ Novo nome: "); String nome = input.nextLine();
+         * 
+         * System.out.print("+ Novo CPF: "); long cpf = input.nextLong();
+         * 
+         * System.out.print("+ Número da carteira de motorista: "); double
+         * numerodacarteirademotorista = input.nextDouble(); input.nextLine();
+         * 
+         * System.out.print("+ Novo endereço: "); String endereco = input.nextLine();
+         * 
+         * System.out.print("+ Novo número de telefone: "); double telefone =
+         * input.nextDouble();
+         * 
+         * clienteEditado = new Cliente(nome, cpf, numerodacarteirademotorista,
+         * endereco, telefone);
+         * 
+         * System.out.println("\n+ Modificado com sucesso ? " + listaDeClientes.set(cpf,
+         * clienteEditado));
+         */
     }
 
     public static void consultarDadosPorPlaca() {
@@ -419,11 +453,11 @@ public class App {
         System.out.println(listaDeVeiculos.getInfo());
     }
 
-    /*------------------------------------------------------------------------*/
+    /*---------------------------------------------------------------------------------------*/
 
     public static void adicionarNovaLocacao() {
         Locacao novaLocacao;
-        
+
         System.out.println("\n- Adicionar Locação -");
 
         System.out.print("+ CPF do cliente: ");
@@ -470,13 +504,45 @@ public class App {
 
     public static void modificarLocacao() {
 
-        System.out.println("\n- Modificar dados da locação- ");
-        System.out.print("+ Informe o código: ");
-        System.out.print("\nDeseja editar esta locação? " + listaDeLocacoes.get(input.nextInt()));
-        int option = input.nextInt();
-        if (option == 1) {
+        boolean seguro = true;
+        Locacao locacaoEditada;
 
+        System.out.println("\n- Modificar dados de locacação- ");
+
+        System.out.print("+ Código da locação: ");
+        int codigo = input.nextInt();
+
+        Locacao locacaoAntiga = listaDeLocacoes.get(codigo);
+        System.out.println("\nLocacao a ser editado: " + locacaoAntiga);
+        input.nextLine();
+
+        System.out.print("+ CPF do cliente: ");
+        Cliente clientelocador = listaDeClientes.get(input.nextLong());
+        System.out.println(clientelocador);
+        input.nextLine();
+
+        System.out.print("+ Placa do veículo: ");
+        Veiculo veiculolocado = listaDeVeiculos.get(input.nextLine());
+        System.out.println(veiculolocado);
+
+        System.out.print("+ Data de Início: ");
+        String datainicio = input.nextLine();
+
+        System.out.print("+ Data final: ");
+        String datafinal = input.nextLine();
+
+        System.out.print("+ Seguro ? (S ou N): ");
+        char resposta = Character.toUpperCase(input.next().charAt(0));
+
+        if (resposta == 'S') {
+            seguro = true;
+        } else if (resposta == 'N') {
+            seguro = false;
         }
+
+        locacaoEditada = new Locacao(clientelocador, veiculolocado, datainicio, datafinal, seguro);
+
+        System.out.println("\n+ Modificado com sucesso ? " + listaDeLocacoes.set(codigo, locacaoEditada));
     }
 
     public static void consultarLocacaoPorCodigo() {

@@ -50,9 +50,14 @@ public class ClientesController implements IClientes {
 
     }
 
-    public boolean set(long CPF, Cliente c) { // Fazer
-        Cliente cliente = get(CPF);
-        return cliente.toString() != null;
+    public boolean set(long CPF, Cliente clienteEditado) {
+        for (int i = 0; i < listaDeClientes.size(); i++) {
+            if (clienteEditado.getCpf() == CPF) {
+                listaDeClientes.set(i, clienteEditado);
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean remove(long CPF) {

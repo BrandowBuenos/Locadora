@@ -56,6 +56,7 @@ public class VeiculosController implements IVeiculos {
     public boolean set(String placa, Veiculo v) {
         Veiculo veiculoAntigo = get(placa);
         if (get(placa) != null) {
+            
             veiculoAntigo = v;
             return true;
         }
