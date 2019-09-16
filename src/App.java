@@ -187,16 +187,14 @@ public class App {
         System.out.println("\n- Modificar dados de cliente- ");
 
         System.out.print("+ CPF do cliente: ");
+        long cpf = input.nextLong();
 
-        Cliente clienteAntigo = listaDeClientes.get(input.nextLong());
+        Cliente clienteAntigo = listaDeClientes.get(cpf);
         System.out.println("\n+ Cliente a ser editado: " + clienteAntigo);
         input.nextLine();
 
         System.out.print("+ Novo nome: ");
         String nome = input.nextLine();
-
-        System.out.print("+ Novo CPF: ");
-        long cpf = input.nextLong();
 
         System.out.print("+ Número da carteira de motorista: ");
         double numerodacarteirademotorista = input.nextDouble();
