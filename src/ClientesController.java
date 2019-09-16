@@ -52,7 +52,7 @@ public class ClientesController implements IClientes {
 
     public boolean set(long CPF, Cliente clienteEditado) {
         for (int i = 0; i < listaDeClientes.size(); i++) {
-            if (clienteEditado.getCpf() == CPF) {
+            if (listaDeClientes.get(i).getCpf() == CPF) {
                 listaDeClientes.set(i, clienteEditado);
                 return true;
             }
