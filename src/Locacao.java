@@ -1,5 +1,3 @@
-import java.util.Date;
-
 import Cliente.java;
 import Veiculos.java;
 
@@ -7,18 +5,24 @@ import Veiculos.java;
  * Locacao
  */
 public class Locacao {
-    int codigodalocacao = 0;
-    boolean seguro;
-    float valordadiaria;
-    Date datainicio;
-    Date datafinal;
 
-    public Locacao() {
+    private static int nLocacao = 0;
+    private final int codigoLocacao;
+
+    private Cliente clientelocador;
+    private Veiculo veiculolocado;
+    private String datainicio;
+    private String datafinal;
+    private boolean seguro;
+
+    public Locacao(String clientelocador, String veiculolocado) { // tipos errados
+        nLocacao++;
+        this.codigoLocacao = nLocacao;
 
     }
- 
-    public int getCodigoDaLocacao () {
-        return this.codigodalocacao = codigodalocacao + 1;
+
+    public int getCodigoDaLocacao() {
+        return codigoLocacao;
     }
 
     public void setValorDaDiaria(float valordadiaria) {
@@ -29,24 +33,42 @@ public class Locacao {
         return this.valordadiaria;
     }
 
-    public void setDataInicio(Date datainicio) {
+    public void setDataInicio(String datainicio) {
         this.datainicio = datainicio;
     }
 
-    public Date getDataInicio() {
+    public String getDataInicio() {
         return this.datainicio;
     }
 
-    public void setDataFinal(Date datafinal) {
+    public void setDataFinal(String datafinal) {
         this.datafinal = datafinal;
     }
 
-    public Date getDataFinal() {
+    public String getDataFinal() {
         return this.datafinal;
     }
 
-    public boolean verificaSeguro(boolean seguro) {
+    public void setSeguro(boolean seguro) {
+        this.seguro = seguro;
+    }
+
+    public boolean getSeguro() {
         return this.seguro;
+    }
+
+    public Cliente getClienteLocador() {
+        return this.clientelocador;
+    }
+
+    public Veiculo getVeiculoLocado() {
+        return this.veiculolocado;
+    }
+
+    public String toString() {
+        return "\n+ Código: " + this.getCodigoDaLocacao() + "\n" + "- Cliente: " + getClienteLocador() + "\n"
+                + "- Veículo locado: " + getVeiculoLocado() + "\n" + "- Data inicio: " + getDataInicio() + "\n"
+                + "- Data final: " + getDataFinal() + "\n" + "- Seguro: " + getSeguro() + "\n";
     }
 
 }

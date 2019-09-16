@@ -64,4 +64,6 @@ public class LocacoesController implements ILocacoes {
         return locacao != null;
 
     }
+
+    
 }

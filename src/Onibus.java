@@ -53,7 +53,7 @@ public class Onibus extends Veiculo {
 
     public String toString2() {
 
-        return "\n+ Õnibus" + super.toString();
+        return "\n+ Ônibus" + super.toString();
     }
 
 }

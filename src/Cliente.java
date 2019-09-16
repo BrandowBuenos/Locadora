@@ -3,11 +3,11 @@
  */
 public class Cliente {
 
-    String nome;
-    long cpf;
-    double numerodacarteirademotorista;
-    String endereco;
-    double telefone;
+    private String nome;
+    private long cpf;
+    private double numerodacarteirademotorista;
+    private String endereco;
+    private double telefone;
 
     public Cliente(String nome, long cpf) {
         this.nome = nome;

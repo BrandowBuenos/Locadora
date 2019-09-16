@@ -1,10 +1,10 @@
 import Cliente.java;
 import Veiculo.java;
+import Locacao.java;
 import ClientesController.java;
 import VeiculosController.java;
 import LocacoesController.java;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+
 import java.util.Scanner;
 
 /**
@@ -44,8 +44,7 @@ public class App {
             System.out.println("14. Remover locação");
             System.out.println("15. Modificar locação");
             System.out.println("16. Consultar locação pelo código");
-            System.out.println("17. Exibir resumo de todas as locações");
-            System.out.println("18. Exibir todas as locações");
+            System.out.println("17. Exibir todas as locações");
 
             System.out.println("0. Sair\n");
 
@@ -119,14 +118,6 @@ public class App {
 
             case 17:
                 exibirTodasLocacao();
-                break;
-
-            case 18:
-                verificarSeLocacaoExiste();
-                break;
-
-            case 20:
-                verificarGetDoVeiculo();
                 break;
 
             default:
@@ -377,7 +368,7 @@ public class App {
                 }
 
                 listaDeVeiculos.add(novoOnibus);
-                System.out.println("\nOnibus cadastrado com sucesso !");
+                System.out.println("\nÔnibus cadastrado com sucesso !");
                 break;
 
             default:
@@ -413,13 +404,6 @@ public class App {
         }
     }
 
-    public static void verificarGetDoVeiculo() {
-
-        System.out.println("\n- Dados do Veículo por Placa - ");
-        System.out.print("+ Informe a Placa: ");
-        System.out.println(listaDeVeiculos.get(input.nextLine()));
-    }
-
     public static void consultarDadosPorPlaca() {
 
         System.out.println("\n- Dados do Veículo por Placa - ");
@@ -441,31 +425,40 @@ public class App {
         Locacao novaLocacao;
 
         System.out.println("\n- Adicionar Locação -");
-        System.out.print("\n+ Código: ");
-        int codigodalocacao = input.nextInt();
+
+        System.out.print("+ CPF do cliente: ");
+        String clientelocador = listaDeClientes.getInfo(input.nextLong());
+        System.out.println(clientelocador);
         input.nextLine();
 
-        System.out.println("\n+ Valor da diaria");
-        float valordadiaria = input.nextFloat();
+        System.out.print("+ Placa do veículo: ");
+        String veiculolocado = listaDeVeiculos.getInfo(input.nextLine());
+        System.out.println(veiculolocado);
+
+        novaLocacao = new Locacao(clientelocador, veiculolocado);
+
+        System.out.print("\n+ Data de Início: ");
+        novaLocacao.setDataInicio(input.nextLine());
+
+        System.out.print("\n+ Data Final: ");
+        novaLocacao.setDataFinal(input.nextLine());
+
+        System.out.println("\n+ Adicionar seguro ? (S ou N)");
+        char resposta = Character.toUpperCase(input.next().charAt(0));
+        if (resposta == 'S') {
+            novaLocacao.setSeguro(true);
+        } else if (resposta == 'N') {
+            novaLocacao.setSeguro(false);
+        }
+
+        listaDeLocacoes.add(novaLocacao);
+
+        System.out.println("\n+ Deseja continuar adicionando mais Locações ?");
+        System.out.println("- Digite 1 para continuar adicionando");
+        System.out.println("- Digite 0 para sair do cadastro");
+        int option = input.nextInt();
         input.nextLine();
 
-        System.out.println("\n+ Data de Início");
-        String date = input.next();
-        input.nextLine();
-        SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
-
-        Date dateinicio = (Date) format.parse(date);
-
-        System.out.println("\n+ Data Final");
-        String date2 = input.next();
-        input.nextLine();
-        SimpleDateFormat format2DateFormat = new SimpleDateFormat("dd-mm-yyyy");
-
-        Date datafinal = (Date) format2DateFormat.parse(date2);
-
-        System.out.println("\n+ O veiculo possui seguro (true ou false)?");
-        boolean seguro = input.nextBoolean();
-        input.nextLine();
     }
 
     public static void removerLocacao() {
@@ -494,12 +487,6 @@ public class App {
 
     public static void exibirTodasLocacao() {
         System.out.println(listaDeLocacoes.getInfo());
-    }
-
-    public static void verificarSeLocacaoExiste() {
-        System.out.println("\n- Verificar se a locação existe - ");
-        System.out.print("+ Informe o código: ");
-        System.out.println(listaDeLocacoes.existe(input.nextInt()));
     }
 
     public static void main(String[] args) {
