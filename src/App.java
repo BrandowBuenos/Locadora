@@ -7,6 +7,8 @@ import LocacoesController.java;
 
 import java.util.Scanner;
 
+import javax.swing.plaf.synth.SynthSplitPaneUI;
+
 /**
  * App
  */
@@ -23,34 +25,36 @@ public class App {
         do {
             System.out.println("\nLocadora de veículos");
 
-            System.out.println("\n- Gerenciamento de clientes -");
-            System.out.println("1. Cadastrar cliente");
-            System.out.println("2. Remover cliente cadastrado");
-            System.out.println("3. Modificar cliente cadastrado");
-            System.out.println("4. Consultar cliente por CPF");
-            System.out.println("5. Exibir resumo de todos os clientes");
-            System.out.println("6. Exibir todos os clientes");
+            System.out.println("\n► Gerenciamento de clientes");
+            System.out.println("   1. Cadastrar cliente");
+            System.out.println("   2. Remover cliente cadastrado");
+            System.out.println("   3. Modificar cliente cadastrado");
+            System.out.println("   4. Consultar cliente por CPF");
+            System.out.println("   5. Exibir resumo de todos os clientes");
+            System.out.println("   6. Exibir todos os clientes");
 
-            System.out.println("\n- Gerenciamento de veículos -");
-            System.out.println("7. Cadastrar novo veículo");
-            System.out.println("8. Remover veículo cadastrado");
-            System.out.println("9. Modificar veículo cadastrado");
-            System.out.println("10. Consultar veículo por placa");
-            System.out.println("11. Exibir resumo de todos os veículos");
-            System.out.println("12. Exibir todos os veículos");
+            System.out.println("\n► Gerenciamento de veículos");
+            System.out.println("   7. Cadastrar novo veículo");
+            System.out.println("   8. Remover veículo cadastrado");
+            System.out.println("   9. Modificar veículo cadastrado");
+            System.out.println("   10. Consultar veículo por placa");
+            System.out.println("   11. Exibir resumo de todos os veículos");
+            System.out.println("   12. Exibir todos os veículos");
 
-            System.out.println("\n- Gerenciamento de locações -");
-            System.out.println("13. Adicionar nova locação");
-            System.out.println("14. Remover locação");
-            System.out.println("15. Modificar locação");
-            System.out.println("16. Consultar locação pelo código");
-            System.out.print("17. Exibir todas as locações");
+            System.out.println("\n► Gerenciamento de locações");
+            System.out.println("   13. Adicionar nova locação");
+            System.out.println("   14. Remover locação");
+            System.out.println("   15. Modificar locação");
+            System.out.println("   16. Consultar locação pelo código");
+            System.out.print("   17. Exibir todas as locações");
 
             System.out.println("\n");
 
-            System.out.print("+ Informe a opção desejada: ");
-            option = input.nextInt();
-            input.nextLine();
+            do {
+                System.out.print("➜ Informe a opção desejada: ");
+                option = input.nextInt();
+                input.nextLine();
+            } while (option < 1 || option > 17);
 
             switch (option) {
             case 1:
@@ -122,107 +126,156 @@ public class App {
 
             default:
                 System.out.println("Opção Inválida");
+
             }
 
         } while (option != 0);
 
     }
 
-    public static void cadastrarCliente() {
+    public static void cadastrarCliente() { // OK
         Cliente novoCliente;
 
         int option;
+
         do {
             System.out.print("\n- Cadastro de cliente - ");
-            System.out.print("\n+ Informe o nome: ");
+            System.out.print("\n  ● Nome: ");
             String nome = input.nextLine();
 
-            System.out.print("+ Informe o CPF: ");
-            long cpf = input.nextLong();
-            input.nextLine();
+            long cpf;
+
+            do {
+                System.out.print("  ● CPF: ");
+                cpf = input.nextLong();
+                input.nextLine();
+
+                if (listaDeClientes.existe(cpf)) {
+                    System.out.println("\n   ➜ Cpf já existente ! Por favor, informe um novo Cpf\n");
+                }
+
+            } while (listaDeClientes.existe(cpf) == true);
 
             novoCliente = new Cliente(nome, cpf);
 
-            System.out.println("\n  Deseja fazer o cadastro completo ?");
-            System.out.println("  Digite 1 para continuar adicionando");
-            System.out.println("  Digite 0 para finalizar o cadastro\n");
+            System.out.println("\n   ➜  Deseja fazer o cadastro completo ?");
+            System.out.println("      - Digite 1 para continuar adicionando");
+            System.out.println("      - Digite 0 para finalizar o cadastro\n");
+            System.out.print("   ➜ Opção: ");
             option = input.nextInt();
             input.nextLine();
 
             if (option == 1) {
-                System.out.print("\n- Informe o número da carteira de motorista: ");
+                System.out.print("\n  ● Número da CNH: ");
                 novoCliente.setNumeroDaCarteiraDeMotorista(input.nextDouble());
                 input.nextLine();
 
-                System.out.print("- Informe o endereço: ");
-                novoCliente.setEndereco(input.next());
-                input.nextLine();
+                System.out.print("  ● Endereço: ");
+                novoCliente.setEndereco(input.nextLine());
 
-                System.out.print("- Informe o número de telefone: ");
+                System.out.print("  ● Telefone: ");
                 novoCliente.setTelefone(input.nextDouble());
                 input.nextLine();
 
             }
             listaDeClientes.add(novoCliente);
-            System.out.println("\n  Cliente " + novoCliente.getNome() + " cadastrado com sucesso !");
+            System.out.println("\n   ➜ O cliente " + novoCliente.getNome() + " foi cadastrado com sucesso !");
 
-            System.out.println("\n  Deseja continuar adicionando mais clientes ?");
-            System.out.println("  Digite 1 para continuar adicionando");
-            System.out.println("  Digite 0 para sair do cadastro\n");
+            System.out.println("\n  ⟲  Deseja continuar adicionando mais clientes  ?");
+            System.out.println("      - Digite 1 para continuar adicionando");
+            System.out.println("      - Digite 0 para sair do cadastro\n");
+            System.out.print("   ➜ Opção: ");
             option = input.nextInt();
             input.nextLine();
 
         } while (option != 0);
     }
 
-    public static void removerCliente() {
+    public static void removerCliente() { // OK
         System.out.println("\n- Remover Cliente- ");
-        System.out.print("+ Informe o CPF: ");
-        System.out.println("\nRemovido com sucesso? " + listaDeClientes.remove(input.nextLong()));
+        System.out.print("  ● Informe o CPF: ");
+        long cpf = input.nextLong();
+
+        if (listaDeClientes.remove(cpf) == true) {
+            System.out.println("O cliente foi removido com sucesso !");
+        } else if (listaDeClientes.remove(cpf) == false) {
+            System.out.println("A exclusão falhou !");
+        }
     }
 
-    public static void modificarCliente() {
+    public static void modificarCliente() { // OK
         Cliente clienteEditado;
 
         System.out.println("\n- Modificar dados de cliente- ");
 
-        System.out.print("+ CPF do cliente: ");
+        System.out.print("  ● CPF do cliente: ");
         long cpf = input.nextLong();
+        input.nextLine();
 
         Cliente clienteAntigo = listaDeClientes.get(cpf);
-        System.out.println("\n+ Cliente a ser editado: " + clienteAntigo);
-        input.nextLine();
 
-        System.out.print("+ Novo nome: ");
-        String nome = input.nextLine();
+        if (listaDeClientes.get(cpf) == null) {
+            System.out.println("\n   ➜ Não existe nenhum cliente cadastrado com este CPF!\n");
 
-        System.out.print("+ Número da carteira de motorista: ");
-        double numerodacarteirademotorista = input.nextDouble();
-        input.nextLine();
+        } else {
 
-        System.out.print("+ Novo endereço: ");
-        String endereco = input.nextLine();
+            System.out.println("\n  ➜ Cliente a ser editado: ");
+            System.out.println(clienteAntigo);
 
-        System.out.print("+ Novo número de telefone: ");
-        double telefone = input.nextDouble();
+            System.out.print("  ● Novo nome: ");
+            String nome = input.nextLine();
 
-        clienteEditado = new Cliente(nome, cpf, numerodacarteirademotorista, endereco, telefone);
-        System.out.println("\n+ Modificado com sucesso ? " + listaDeClientes.set(cpf, clienteEditado));
+            System.out.print("  ● Número da CNH: ");
+            double numerodacarteirademotorista = input.nextDouble();
+            input.nextLine();
+
+            System.out.print("  ● Novo endereço: ");
+            String endereco = input.nextLine();
+
+            System.out.print("  ● Novo número de telefone: ");
+            double telefone = input.nextDouble();
+            input.nextLine();
+
+            clienteEditado = new Cliente(nome, cpf, numerodacarteirademotorista, endereco, telefone);
+
+            if (listaDeClientes.set(cpf, clienteEditado) == true) {
+                System.out.println("\n   ➜ O cliente " + clienteEditado.getNome() + " foi editado com sucesso !");
+            } else if (listaDeClientes.set(cpf, clienteEditado) == false) {
+                System.out.println("\n   ➜ Não foi possível editar este cliente !");
+            }
+        }
     }
 
-    public static void consultarDadosPorCPF() {
+    public static void consultarDadosPorCPF() { // OK
 
         System.out.println("\n- Dados do Cliente por CPF - ");
-        System.out.print("+ Informe o CPF: ");
-        System.out.println(listaDeClientes.getInfo(input.nextLong()));
+        System.out.print("  ● Informe o CPF: ");
+
+        long cpf = input.nextLong();
+        input.nextLine();
+
+        if (listaDeClientes.getInfo(cpf) == null) {
+            System.out.println("\n  ➜ Não existe cliente cadastrado com este Cpf!");
+        } else {
+            System.out.println("\n  ➜ Cliente encontrado: \n" + listaDeClientes.getInfo(cpf));
+        }
+
     }
 
-    public static void exibirResumoDeTodosClientes() {
-        System.out.println(listaDeClientes.getResumoInfo());
+    public static void exibirResumoDeTodosClientes() { // OK
+        if (listaDeClientes.getResumoInfo() == null) {
+            System.out.println("\n   ➜ Não existem clientes cadastrados!");
+        } else {
+            System.out.println("\n  ➜ Clientes encontrados: \n" + listaDeClientes.getResumoInfo());
+        }
     }
 
-    public static void exibirTodosClientes() {
-        System.out.println(listaDeClientes.getInfo());
+    public static void exibirTodosClientes() { // OK
+        if (listaDeClientes.getInfo() == null) {
+            System.out.println("\n   ➜ Não existem clientes cadastrados!");
+        } else {
+            System.out.println("\n  ➜ Clientes encontrados: \n" + listaDeClientes.getInfo());
+        }
     }
 
     /*
@@ -230,55 +283,73 @@ public class App {
      */
 
     public static void cadastrarVeiculo() {
-        Veiculo novoVeiculo;
 
         int option;
         do {
-            System.out.print("\n- Cadastro de Veiculo - ");
+            System.out.print("\n- Cadastro de Veículo -");
+            System.out.print("\n   ➜   Informe qual o tipo de veículo que deseja cadastrar: ");
 
-            System.out.println("\n1. Carro ");
-            System.out.println("2. Caminhao ");
-            System.out.println("3. Ônibus ");
-            System.out.print("\n+ Informe qual o tipo de veículo que deseja cadastrar: ");
-            option = input.nextInt();
-            input.nextLine();
+            System.out.println("\n    1. Carro ");
+            System.out.println("    2. Caminhão ");
+            System.out.println("    3. Ônibus ");
+
+            do {
+                System.out.print("\n   ➜   Opção: ");
+                option = input.nextInt();
+                input.nextLine();
+            } while (option < 1 || option > 3);
 
             switch (option) {
             case 1:
                 Carro novoCarro;
                 System.out.println("\n+ Cadastro de novo carro ");
-                System.out.print("- Informe a placa: ");
-                String placaCarro = input.nextLine();
 
-                System.out.print("- Informe o ano: ");
+                String placaCarro;
+                do {
+                    System.out.print("  ● Placa: ");
+                    placaCarro = input.nextLine();
+
+                    if (listaDeVeiculos.existe(placaCarro)) {
+                        System.out.println("\n   ➜ Placa já existente ! Por favor, informe uma nova Placa\n");
+                    }
+                } while (listaDeVeiculos.existe(placaCarro) == true);
+
+                System.out.print("  ● Ano: ");
                 int anoCarro = input.nextInt();
                 input.nextLine();
 
-                System.out.print("- Informe o valor da diária: ");
-                float diariaCarro = input.nextFloat();
-                input.nextLine();
+                float diariaCarro;
+                do {
+                    System.out.print("  ● Valor da diária: ");
+                    diariaCarro = input.nextFloat();
+                    input.nextLine();
+
+                } while (diariaCarro < 0);
 
                 novoCarro = new Carro(placaCarro, anoCarro, diariaCarro);
 
-                System.out.println("\n+ Deseja fazer o cadastro completo ?");
-                System.out.println("- Digite 1 para continuar adicionando");
-                System.out.println("- Digite 0 para finalizar o cadastro");
+                System.out.println("\n   ➜  Deseja fazer o cadastro completo ?");
+                System.out.println("      - Digite 1 para continuar adicionando");
+                System.out.println("      - Digite 0 para finalizar o cadastro\n");
+                System.out.print("   ➜ Opção: ");
                 option = input.nextInt();
+                input.nextLine();
 
                 if (option == 1) {
-                    System.out.print("\n- Informe o número de passageiros: ");
+
+                    System.out.print("\n  ● Número de passageiros: ");
                     novoCarro.setNumeroDePassageiros(input.nextInt());
                     input.nextLine();
 
-                    System.out.print("- Informe o número de portas: ");
+                    System.out.print("  ● Número de portas: ");
                     novoCarro.setNumeroDePortas(input.nextInt());
                     input.nextLine();
 
-                    System.out.print("- Informe a média de Km/L: ");
+                    System.out.print("  ● Média de Km/L: ");
                     novoCarro.setMediaDeKml(input.nextFloat());
                     input.nextLine();
 
-                    System.out.print("- Possuí ar-condicionado? (S ou N) ");
+                    System.out.print("  ● Possuí ar-condicionado? (S ou N) ");
                     char resposta = Character.toUpperCase(input.next().charAt(0));
 
                     if (resposta == 'S') {
@@ -296,33 +367,37 @@ public class App {
 
                 Caminhao novoCaminhao;
                 System.out.println("\n+ Cadastro de novo caminhão ");
-                System.out.print("- Informe a placa: ");
+                System.out.print("  ● Placa: ");
                 String placaCaminhao = input.nextLine();
 
-                System.out.print("- Informe o ano: ");
+                System.out.print("  ● Ano: ");
                 int anoCaminhao = input.nextInt();
                 input.nextLine();
 
-                System.out.print("- Informe o valor da diária: ");
-                float diariaCaminhao = input.nextFloat();
-                input.nextLine();
+                float diariaCaminhao;
+                do {
+                    System.out.print("  ● Valor da diária: ");
+                    diariaCaminhao = input.nextFloat();
+                    input.nextLine();
+                } while (diariaCaminhao < 0);
 
                 novoCaminhao = new Caminhao(placaCaminhao, anoCaminhao, diariaCaminhao);
 
-                System.out.println("\n+ Deseja fazer o cadastro completo ?");
-                System.out.println("- Digite 1 para continuar adicionando");
-                System.out.println("- Digite 0 para finalizar o cadastro");
+                System.out.println("\n   ➜  Deseja fazer o cadastro completo ?");
+                System.out.println("      - Digite 1 para continuar adicionando");
+                System.out.println("      - Digite 0 para finalizar o cadastro\n");
+                System.out.print("   ➜ Opção: ");
                 option = input.nextInt();
+                input.nextLine();
 
                 if (option == 1) {
-                    System.out.print("\n- Informe o número de eixos: ");
+                    System.out.print("\n  ● Número de eixos: ");
                     novoCaminhao.setNumeroDeEixos(input.nextInt());
                     input.nextLine();
 
-                    System.out.print("- Informe a carga máxima: ");
+                    System.out.print("  ● Carga máxima: ");
                     novoCaminhao.setCargaMaxima(input.nextFloat());
                     input.nextLine();
-
                 }
 
                 listaDeVeiculos.add(novoCaminhao);
@@ -333,34 +408,39 @@ public class App {
 
                 Onibus novoOnibus;
                 System.out.println("\n+ Cadastro de novo Ônibus ");
-                System.out.print("- Informe a placa: ");
+                System.out.print("  ● Placa: ");
                 String placaOnibus = input.next();
 
-                System.out.print("- Informe o ano: ");
+                System.out.print("  ● Ano: ");
                 int anoOnibus = input.nextInt();
                 input.nextLine();
 
-                System.out.print("- Informe o valor da diária: ");
-                float diariaOnibus = input.nextFloat();
-                input.nextLine();
+                float diariaOnibus;
+                do {
+                    System.out.print("  ● Valor da diária: ");
+                    diariaOnibus = input.nextFloat();
+                    input.nextLine();
+                } while (diariaOnibus < 0);
 
                 novoOnibus = new Onibus(placaOnibus, anoOnibus, diariaOnibus);
 
-                System.out.println("\n+ Deseja fazer o cadastro completo ?");
-                System.out.println("- Digite 1 para continuar adicionando");
-                System.out.println("- Digite 0 para finalizar o cadastro");
+                System.out.println("\n   ➜  Deseja fazer o cadastro completo ?");
+                System.out.println("      - Digite 1 para continuar adicionando");
+                System.out.println("      - Digite 0 para finalizar o cadastro\n");
+                System.out.print("   ➜ Opção: ");
                 option = input.nextInt();
+                input.nextLine();
 
                 if (option == 1) {
-                    System.out.print("\n- Informe o número de passageiros: ");
+                    System.out.print("\n  ● Número de passageiros: ");
                     novoOnibus.setNumeroDePassageiros(input.nextInt());
                     input.nextLine();
 
-                    System.out.print("- Informe a categoria: ");
+                    System.out.print("  ● Categoria: ");
                     novoOnibus.setCategoria(input.next());
                     input.nextLine();
 
-                    System.out.print("- Possuí ar-condicionado? (S ou N) ");
+                    System.out.print("  ● Possuí ar-condicionado? (S ou N) ");
                     char resposta = Character.toUpperCase(input.next().charAt(0));
 
                     if (resposta == 'S') {
@@ -369,7 +449,7 @@ public class App {
                         novoOnibus.setArCondicionado(false);
                     }
 
-                    System.out.print("- Possuí Internet sem fio? (S ou N) ");
+                    System.out.print("  ● Possuí Internet sem fio? (S ou N) ");
                     char resposta1 = Character.toUpperCase(input.next().charAt(0));
 
                     if (resposta1 == 'S') {
@@ -387,9 +467,10 @@ public class App {
                 ;
 
             }
-            System.out.println("\n+ Deseja continuar adicionando mais veículos ?");
-            System.out.println("- Digite 1 para continuar adicionando");
-            System.out.println("- Digite 0 para sair do cadastro");
+            System.out.println("\n  ⟲  Deseja continuar adicionando mais veículos  ?");
+            System.out.println("      - Digite 1 para continuar adicionando");
+            System.out.println("      - Digite 0 para sair do cadastro\n");
+            System.out.print("   ➜ Opção: ");
             option = input.nextInt();
             input.nextLine();
 
@@ -397,49 +478,134 @@ public class App {
 
     }
 
-    public static void removerVeiculo() {
+    public static void removerVeiculo() { // OK
         System.out.println("\n- Remover Veículo- ");
-        System.out.print("+ Informe a placa: ");
-        System.out.println("\nRemovido com sucesso? " + listaDeVeiculos.remove(input.nextLine()));
+        System.out.print("  ● Placa: ");
+        String placa = input.nextLine();
 
+        if (listaDeVeiculos.remove(placa) == true) {
+            System.out.println("O veículo foi removido com sucesso !");
+        } else if (listaDeVeiculos.remove(placa) == false) {
+            System.out.println("A exclusão falhou !");
+        }
     }
 
     public static void modificarVeiculo() {
-        /*
-         * Veiculo veiculoEditado;
-         * 
-         * System.out.println("\n- Modificar dados de veículo- ");
-         * 
-         * System.out.print("+ Placa do veículo: ");
-         * 
-         * Veiculo veiculoAntigo = listaDeVeiculos.get(input.nextLine());
-         * System.out.println("\nCliente a ser editado: " + clienteAntigo);
-         * input.nextLine();
-         * 
-         * System.out.print("+ Novo nome: "); String nome = input.nextLine();
-         * 
-         * System.out.print("+ Novo CPF: "); long cpf = input.nextLong();
-         * 
-         * System.out.print("+ Número da carteira de motorista: "); double
-         * numerodacarteirademotorista = input.nextDouble(); input.nextLine();
-         * 
-         * System.out.print("+ Novo endereço: "); String endereco = input.nextLine();
-         * 
-         * System.out.print("+ Novo número de telefone: "); double telefone =
-         * input.nextDouble();
-         * 
-         * clienteEditado = new Cliente(nome, cpf, numerodacarteirademotorista,
-         * endereco, telefone);
-         * 
-         * System.out.println("\n+ Modificado com sucesso ? " + listaDeClientes.set(cpf,
-         * clienteEditado));
-         */
+
+        System.out.println("\n1. Carro ");
+        System.out.println("2. Caminhao ");
+        System.out.println("3. Ônibus ");
+        System.out.print("\n+ Informe qual o tipo de veículo que deseja editar: ");
+        int option = input.nextInt();
+        input.nextLine();
+
+        switch (option) {
+        case 1:
+            System.out.print("\nInforme a placa do carro: ");
+            String placaCarro = input.nextLine();
+
+            if (listaDeVeiculos.get(placaCarro) instanceof Carro) {
+                Carro carroEditado = (Carro) listaDeVeiculos.get(placaCarro);
+
+                System.out.print("\n- Carro a ser editado: " + carroEditado);
+                System.out.print("\n+ Digite a nova placa: ");
+                String placaEditada = input.nextLine();
+
+                System.out.print("+ Digite a nova diária: ");
+                float diariaEditada = input.nextFloat();
+                input.nextLine();
+
+                int ano = carroEditado.getAno();
+                int numerodepassageiros = carroEditado.getNumeroDePassageiros();
+                int numerodeportas = carroEditado.getNumeroDePortas();
+                float mediadekml = carroEditado.getMediaDeKml();
+                boolean arcondicionado = carroEditado.getArCondicionado();
+
+                carroEditado = new Carro(placaEditada, ano, diariaEditada);
+
+                carroEditado.setNumeroDePassageiros(numerodepassageiros);
+                carroEditado.setNumeroDePortas(numerodeportas);
+                carroEditado.setMediaDeKml(mediadekml);
+                carroEditado.setArCondicionado(arcondicionado);
+
+                System.out.println("\n+ Modificado com sucesso ? " + listaDeVeiculos.set(placaCarro, carroEditado));
+
+            }
+
+            break;
+
+        case 2:
+            System.out.print("\nInforme a placa do Caminhão: ");
+            String placaCaminhao = input.nextLine();
+
+            if (listaDeVeiculos.get(placaCaminhao) instanceof Caminhao) {
+                Caminhao caminhaoEditado = (Caminhao) listaDeVeiculos.get(placaCaminhao);
+
+                System.out.print("\n- Caminhão a ser editado: " + caminhaoEditado);
+                System.out.print("\n+ Digite a nova placa: ");
+                String placaEditada = input.nextLine();
+
+                System.out.print("+ Digite a nova diária: ");
+                float diariaEditada = input.nextFloat();
+                input.nextLine();
+
+                int ano = caminhaoEditado.getAno();
+                int numerodeeixos = caminhaoEditado.getNumeroDeEixos();
+                float cargamaxima = caminhaoEditado.getCargaMaxima();
+
+                caminhaoEditado = new Caminhao(placaEditada, ano, diariaEditada);
+
+                caminhaoEditado.setNumeroDeEixos(numerodeeixos);
+                caminhaoEditado.setCargaMaxima(cargamaxima);
+
+                System.out
+                        .println("\n+ Modificado com sucesso ? " + listaDeVeiculos.set(placaCaminhao, caminhaoEditado));
+
+            }
+            break;
+
+        case 3:
+            System.out.print("\nInforme a placa do Ônibus: ");
+            String placaOnibus = input.nextLine();
+
+            if (listaDeVeiculos.get(placaOnibus) instanceof Onibus) {
+                Onibus onibusEditado = (Onibus) listaDeVeiculos.get(placaOnibus);
+
+                System.out.print("\n- Ônibus a ser editado: " + onibusEditado);
+                System.out.print("\n+ Digite a nova placa: ");
+                String placaEditada = input.nextLine();
+
+                System.out.print("+ Digite a nova diária: ");
+                float diariaEditada = input.nextFloat();
+                input.nextLine();
+
+                int ano = onibusEditado.getAno();
+                int numerodepassageiros = onibusEditado.getNumeroDePassageiros();
+                String categoria = onibusEditado.getCategoria();
+                boolean wifi = onibusEditado.getWifi();
+                boolean arcondicionado = onibusEditado.getArCondicionado();
+
+                onibusEditado = new Onibus(placaEditada, ano, diariaEditada);
+
+                onibusEditado.setNumeroDePassageiros(numerodepassageiros);
+                onibusEditado.setCategoria(categoria);
+                onibusEditado.setWifi(wifi);
+                onibusEditado.setArCondicionado(arcondicionado);
+
+                System.out.println("\n+ Modificado com sucesso ? " + listaDeVeiculos.set(placaOnibus, onibusEditado));
+
+            }
+            break;
+
+        default:
+            ;
+        }
     }
 
     public static void consultarDadosPorPlaca() {
 
         System.out.println("\n- Dados do Veículo por Placa - ");
-        System.out.print("+ Informe a Placa: ");
+        System.out.print("  ● Informe a Placa: ");
         System.out.println(listaDeVeiculos.getInfo(input.nextLine()));
     }
 
@@ -502,7 +668,6 @@ public class App {
 
     public static void modificarLocacao() {
 
-        boolean seguro = true;
         Locacao locacaoEditada;
 
         System.out.println("\n- Modificar dados de locacação- ");
@@ -531,14 +696,15 @@ public class App {
 
         System.out.print("+ Seguro ? (S ou N): ");
         char resposta = Character.toUpperCase(input.next().charAt(0));
+        input.nextLine();
 
         if (resposta == 'S') {
-            seguro = true;
+            locacaoAntiga.setSeguro(true);
         } else if (resposta == 'N') {
-            seguro = false;
+            locacaoAntiga.setSeguro(false);
         }
 
-        locacaoEditada = new Locacao(clientelocador, veiculolocado, datainicio, datafinal, seguro);
+        locacaoEditada = new Locacao(clientelocador, veiculolocado, datainicio, datafinal);
 
         System.out.println("\n+ Modificado com sucesso ? " + listaDeLocacoes.set(codigo, locacaoEditada));
     }

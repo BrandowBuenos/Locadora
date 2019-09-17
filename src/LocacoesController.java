@@ -46,7 +46,7 @@ public class LocacoesController implements ILocacoes {
 
     public boolean set(int codigo, Locacao locacaoEditada) { 
         for (int i = 0; i < listaDeLocacoes.size(); i++) {
-            if (locacaoEditada.getCodigoDaLocacao() == codigo) {
+            if (listaDeLocacoes.get(i).getCodigoDaLocacao() == codigo) {
                 listaDeLocacoes.set(i, locacaoEditada);
                 return true;
             }

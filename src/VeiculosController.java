@@ -53,12 +53,12 @@ public class VeiculosController implements IVeiculos {
         return dado;
     }
 
-    public boolean set(String placa, Veiculo v) {
-        Veiculo veiculoAntigo = get(placa);
-        if (get(placa) != null) {
-            
-            veiculoAntigo = v;
-            return true;
+    public boolean set(String placa, Veiculo veiculoEditado) {
+        for (int i = 0; i < listaDeVeiculos.size(); i++) {
+            if (listaDeVeiculos.get(i).getPlaca().equals(placa)) {
+                listaDeVeiculos.set(i, veiculoEditado);
+                return true;
+            }
         }
         return false;
     }
