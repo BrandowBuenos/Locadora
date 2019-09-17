@@ -21,12 +21,13 @@ public class Locacao {
         this.codigoLocacao = nLocacao;
     }
 
-    public Locacao(Cliente clientelocador, Veiculo veiculolocado, String datainicio, String datafinal, boolean seguro) {
+    public Locacao(Cliente clientelocador, Veiculo veiculolocado, String datainicio, String datafinal) {
         this.clientelocador = clientelocador;
         this.veiculolocado = veiculolocado;
         this.datainicio = datainicio;
         this.datafinal = datafinal;
         this.codigoLocacao = nLocacao;
+        
     }
 
     public int getCodigoDaLocacao() {

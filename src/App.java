@@ -7,6 +7,8 @@ import LocacoesController.java;
 
 import java.util.Scanner;
 
+import javax.swing.plaf.synth.SynthSplitPaneUI;
+
 /**
  * App
  */
@@ -405,35 +407,93 @@ public class App {
     }
 
     public static void modificarVeiculo() {
-        /*
-         * Veiculo veiculoEditado;
-         * 
-         * System.out.println("\n- Modificar dados de veículo- ");
-         * 
-         * System.out.print("+ Placa do veículo: ");
-         * 
-         * Veiculo veiculoAntigo = listaDeVeiculos.get(input.nextLine());
-         * System.out.println("\nCliente a ser editado: " + clienteAntigo);
-         * input.nextLine();
-         * 
-         * System.out.print("+ Novo nome: "); String nome = input.nextLine();
-         * 
-         * System.out.print("+ Novo CPF: "); long cpf = input.nextLong();
-         * 
-         * System.out.print("+ Número da carteira de motorista: "); double
-         * numerodacarteirademotorista = input.nextDouble(); input.nextLine();
-         * 
-         * System.out.print("+ Novo endereço: "); String endereco = input.nextLine();
-         * 
-         * System.out.print("+ Novo número de telefone: "); double telefone =
-         * input.nextDouble();
-         * 
-         * clienteEditado = new Cliente(nome, cpf, numerodacarteirademotorista,
-         * endereco, telefone);
-         * 
-         * System.out.println("\n+ Modificado com sucesso ? " + listaDeClientes.set(cpf,
-         * clienteEditado));
-         */
+
+        System.out.println("\n1. Carro ");
+        System.out.println("2. Caminhao ");
+        System.out.println("3. Ônibus ");
+        System.out.print("\n+ Informe qual o tipo de veículo que deseja editar: ");
+        int option = input.nextInt();
+        input.nextLine();
+
+        switch (option) {
+        case 1:
+            System.out.println("\nInforme a placa do carro: ");
+            String placaCarro = input.nextLine();
+
+            if (listaDeVeiculos.get(placaCarro) instanceof Carro) {
+                Carro carroEditado = (Carro) listaDeVeiculos.get(placaCarro);
+
+                System.out.print("\n- Carro a ser editado: " + carroEditado);
+                System.out.print("\n+ Digite a nova placa: ");
+                String placaEditada = input.nextLine();
+
+                System.out.print("+ Digite a nova diária: ");
+                float diariaEditada = input.nextFloat();
+                input.nextLine();
+
+                int ano = carroEditado.getAno();
+
+                carroEditado = new Carro(placaEditada, ano, diariaEditada);
+
+                System.out.println("\n+ Modificado com sucesso ? " + listaDeVeiculos.set(placaCarro, carroEditado));
+
+            }
+
+            break;
+
+        case 2:
+            System.out.println("\nInforme a placa do Caminhão: ");
+            String placaCaminhao = input.nextLine();
+
+            if (listaDeVeiculos.get(placaCaminhao) instanceof Caminhao) {
+                Caminhao caminhaoEditado = (Caminhao) listaDeVeiculos.get(placaCaminhao);
+
+                System.out.print("\n- Caminhão a ser editado: " + caminhaoEditado);
+                System.out.print("\n+ Digite a nova placa: ");
+                String placaEditada = input.nextLine();
+
+                System.out.print("+ Digite a nova diária: ");
+                float diariaEditada = input.nextFloat();
+                input.nextLine();
+
+                int ano = caminhaoEditado.getAno();
+
+                caminhaoEditado = new Caminhao(placaEditada, ano, diariaEditada);
+
+                System.out
+                        .println("\n+ Modificado com sucesso ? " + listaDeVeiculos.set(placaCaminhao, caminhaoEditado));
+
+            }
+            break;
+
+        case 3:
+            System.out.println("\nInforme a placa do Ônibus: ");
+            String placaOnibus = input.nextLine();
+
+            if (listaDeVeiculos.get(placaOnibus) instanceof Onibus) {
+                Onibus onibusEditado = (Onibus) listaDeVeiculos.get(placaOnibus);
+
+                System.out.print("\n- Ônibus a ser editado: " + onibusEditado);
+                System.out.print("\n+ Digite a nova placa: ");
+                String placaEditada = input.nextLine();
+
+                System.out.print("+ Digite a nova diária: ");
+                float diariaEditada = input.nextFloat();
+                input.nextLine();
+
+                int ano = onibusEditado.getAno();
+
+                onibusEditado = new Onibus(placaEditada, ano, diariaEditada);
+
+                System.out.println("\n+ Modificado com sucesso ? " + listaDeVeiculos.set(placaOnibus, onibusEditado));
+
+            }
+            break;
+
+        default:
+            ;
+        }
+
     }
 
     public static void consultarDadosPorPlaca() {
@@ -502,7 +562,6 @@ public class App {
 
     public static void modificarLocacao() {
 
-        boolean seguro = true;
         Locacao locacaoEditada;
 
         System.out.println("\n- Modificar dados de locacação- ");
@@ -531,14 +590,15 @@ public class App {
 
         System.out.print("+ Seguro ? (S ou N): ");
         char resposta = Character.toUpperCase(input.next().charAt(0));
+        input.nextLine();
 
         if (resposta == 'S') {
-            seguro = true;
+            locacaoAntiga.setSeguro(true);
         } else if (resposta == 'N') {
-            seguro = false;
+            locacaoAntiga.setSeguro(false);
         }
 
-        locacaoEditada = new Locacao(clientelocador, veiculolocado, datainicio, datafinal, seguro);
+        locacaoEditada = new Locacao(clientelocador, veiculolocado, datainicio, datafinal);
 
         System.out.println("\n+ Modificado com sucesso ? " + listaDeLocacoes.set(codigo, locacaoEditada));
     }
