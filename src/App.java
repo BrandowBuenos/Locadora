@@ -492,12 +492,17 @@ public class App {
 
     public static void modificarVeiculo() {
 
-        System.out.println("\n1. Carro ");
-        System.out.println("2. Caminhao ");
-        System.out.println("3. Ônibus ");
-        System.out.print("\n+ Informe qual o tipo de veículo que deseja editar: ");
-        int option = input.nextInt();
-        input.nextLine();
+        System.out.print("\n   ➜   Informe qual o tipo de veículo que deseja cadastrar: ");
+
+        System.out.println("\n    1. Carro ");
+        System.out.println("    2. Caminhão ");
+        System.out.println("    3. Ônibus ");
+
+        do {
+            System.out.print("\n   ➜   Opção: ");
+            option = input.nextInt();
+            input.nextLine();
+        } while (option < 1 || option > 3);
 
         switch (option) {
         case 1:

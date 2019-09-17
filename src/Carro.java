@@ -9,11 +9,7 @@ public class Carro extends Veiculo {
     private boolean arcondicionado;
 
     public Carro(String placa, int ano, float diaria) {
-        super(placa, ano, diaria);   
-    }
-
-    public Carro(String placa, int ano, float diaria) {
-        super(placa, ano, diaria);   
+        super(placa, ano, diaria);
     }
 
     public void setNumeroDePassageiros(int numerodepassageiros) {

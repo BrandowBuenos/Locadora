@@ -34,14 +34,6 @@ public class Locacao {
         return codigoLocacao;
     }
 
-    public void setValorDaDiaria(float valordadiaria) {
-        this.valordadiaria = valordadiaria;
-    }
-
-    public float getValorDaDiaria() {
-        return this.valordadiaria;
-    }
-
     public void setDataInicio(String datainicio) {
         this.datainicio = datainicio;
     }
