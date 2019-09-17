@@ -38,7 +38,11 @@ public class ClientesController implements IClientes {
         for (Cliente cliente : listaDeClientes) {
             dado += cliente.toString();
         }
-        return dado;
+        if (dado != "") {
+            return dado;
+        } else {
+            return null;
+        }
     }
 
     public String getResumoInfo() {
@@ -46,8 +50,11 @@ public class ClientesController implements IClientes {
         for (Cliente cliente : listaDeClientes) {
             dado += cliente.toString2();
         }
-        return dado;
-
+        if (dado != "") {
+            return dado;
+        } else {
+            return null;
+        }
     }
 
     public boolean set(long CPF, Cliente clienteEditado) {

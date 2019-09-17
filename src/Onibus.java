@@ -39,7 +39,7 @@ public class Onibus extends Veiculo {
         this.arcondicionado = arcondicionado;
     }
 
-    public boolean verificaArCondicionado() {
+    public boolean getArCondicionado() {
         return this.arcondicionado;
     }
 
@@ -49,8 +49,8 @@ public class Onibus extends Veiculo {
 
     public String toString2() {
         return "\n+ Ônibus" + super.toString() + "- Numero de passageiros: " + this.getNumeroDePassageiros() + "\n"
-                + "- Categoria: " + this.getCategoria() + "\n" + "- Wi-fi: " + this.getWifi() + "\n"
-                + "- Possuí ar-condicionado ? " + this.verificaArCondicionado() + "\n";
+                + "- Categoria: " + this.getCategoria() + "\n" + "- Possuí ar-condicionado ? "
+                + this.getArCondicionado() + "\n" + "- Wi-fi: " + this.getWifi() + "\n";
 
     }
 
