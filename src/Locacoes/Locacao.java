@@ -1,5 +1,5 @@
-import Cliente.java;
-import Veiculo.java;
+import Clientes.Cliente.java;
+import Veiculos.Veiculo.java;
 
 /**
  * Locacao
@@ -27,6 +27,7 @@ public class Locacao {
         this.codigoLocacao = nLocacao;
     }
 
+
     /**
      * Construtor da Locacao completo
      * 
@@ -35,12 +36,12 @@ public class Locacao {
      * @param datainicio
      * @param datafinal
      */
-    public Locacao(Cliente clientelocador, Veiculo veiculolocado, String datainicio, String datafinal) {
+    public Locacao(Cliente clientelocador, Veiculo veiculolocado, String datainicio, String datafinal, int codigoLocacao) {
         this.clientelocador = clientelocador;
         this.veiculolocado = veiculolocado;
         this.datainicio = datainicio;
         this.datafinal = datafinal;
-        this.codigoLocacao = nLocacao;
+        this.codigoLocacao = codigoLocacao;
 
     }
 

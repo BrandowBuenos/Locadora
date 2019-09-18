@@ -1,11 +1,13 @@
-import Cliente.java;
-import Veiculo.java;
-import Locacao.java;
-import ClientesController.java;
-import VeiculosController.java;
-import LocacoesController.java;
+import Clientes.Cliente.java;
+import Veiculos.Veiculo.java;
+import Locacoes.Locacao.java;
+import Clientes.ClientesController.java;
+import Veiculos.VeiculosController.java;
+import Locacoes.LocacoesController.java;
 
 import java.util.Scanner;
+
+import org.omg.CORBA.LocalObject;
 
 /**
  * App
@@ -348,8 +350,11 @@ public class App {
                     novoCarro.setMediaDeKml(input.nextFloat());
                     input.nextLine();
 
-                    System.out.print("  ● Possuí ar-condicionado? (S ou N) ");
-                    char resposta = Character.toUpperCase(input.next().charAt(0));
+                    char resposta;
+                    do {
+                        System.out.print("  ● Possuí ar-condicionado? (S ou N) ");
+                        resposta = Character.toUpperCase(input.next().charAt(0));
+                    } while (resposta != 'S' && resposta != 'N');
 
                     if (resposta == 'S') {
                         novoCarro.setArCondicionado(true);
@@ -455,8 +460,11 @@ public class App {
                     novoOnibus.setCategoria(input.next());
                     input.nextLine();
 
-                    System.out.print("  ● Possuí ar-condicionado? (S ou N) ");
-                    char resposta = Character.toUpperCase(input.next().charAt(0));
+                    char resposta;
+                    do {
+                        System.out.print("  ● Possuí ar-condicionado? (S ou N) ");
+                        resposta = Character.toUpperCase(input.next().charAt(0));
+                    } while (resposta != 'S' && resposta != 'N');
 
                     if (resposta == 'S') {
                         novoOnibus.setArCondicionado(true);
@@ -464,8 +472,11 @@ public class App {
                         novoOnibus.setArCondicionado(false);
                     }
 
-                    System.out.print("  ● Possuí Internet sem fio? (S ou N) ");
-                    char resposta1 = Character.toUpperCase(input.next().charAt(0));
+                    char resposta1;
+                    do {
+                        System.out.print("  ● Possuí Internet sem fio? (S ou N) ");
+                        resposta1 = Character.toUpperCase(input.next().charAt(0));
+                    } while (resposta1 != 'S' && resposta1 != 'N');
 
                     if (resposta1 == 'S') {
                         novoOnibus.setWifi(true);
@@ -788,6 +799,8 @@ public class App {
             System.out.println("\n  ➜ Locação a ser editado: ");
             System.out.println(locacaoAntiga);
 
+            int codigoAntigo = locacaoAntiga.getCodigoDaLocacao();
+
             long cpf;
             do {
                 System.out.print("  ● CPF do cliente: ");
@@ -827,7 +840,7 @@ public class App {
                 locacaoAntiga.setSeguro(false);
             }
 
-            locacaoEditada = new Locacao(clientelocador, veiculolocado, datainicio, datafinal);
+            locacaoEditada = new Locacao(clientelocador, veiculolocado, datainicio, datafinal, codigoAntigo);
 
             if (listaDeLocacoes.set(codigo, locacaoEditada) == true) {
                 System.out.println("\n   ➜ A locação de código " + locacaoEditada.getCodigoDaLocacao()
