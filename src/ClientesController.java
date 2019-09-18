@@ -7,14 +7,28 @@ public class ClientesController implements IClientes {
 
     public ArrayList<Cliente> listaDeClientes;
 
+    /**
+     * Construtor da classe que instancia um novo ArrayList
+     */
     public ClientesController() {
         listaDeClientes = new ArrayList();
     }
 
+    /**
+     * Adiciona o cliente na lista de clientes
+     * 
+     * @param c
+     */
     public void add(Cliente c) {
         listaDeClientes.add(c);
     }
 
+    /**
+     * Adiciona o cliente na lista de clientes
+     * 
+     * @param CPF
+     * @return
+     */
     public Cliente get(long CPF) {
         for (Cliente cliente : listaDeClientes) {
             if (cliente.getCpf() == CPF) {
@@ -24,6 +38,12 @@ public class ClientesController implements IClientes {
         return null;
     }
 
+    /**
+     * Retorna as informaçoes completas do cliente
+     * 
+     * @param CPF
+     * @return
+     */
     public String getInfo(long CPF) { // OK
         Cliente cliente = get(CPF);
         if (cliente != null) {
@@ -33,6 +53,12 @@ public class ClientesController implements IClientes {
         return null;
     }
 
+    /**
+     * Retorna as informaçoes completas de todos os cliente
+     * 
+     * @param CPF
+     * @return
+     */
     public String getInfo() {
         String dado = "";
         for (Cliente cliente : listaDeClientes) {
@@ -45,6 +71,11 @@ public class ClientesController implements IClientes {
         }
     }
 
+    /**
+     * Retorna um resumo das informacoes dos cliente
+     * 
+     * @return
+     */
     public String getResumoInfo() {
         String dado = "";
         for (Cliente cliente : listaDeClientes) {
@@ -57,6 +88,13 @@ public class ClientesController implements IClientes {
         }
     }
 
+    /**
+     * Altera o cliente com o cpf informado
+     * 
+     * @param CPF
+     * @param clienteEditado
+     * @return
+     */
     public boolean set(long CPF, Cliente clienteEditado) {
         for (int i = 0; i < listaDeClientes.size(); i++) {
             if (listaDeClientes.get(i).getCpf() == CPF) {
@@ -67,6 +105,12 @@ public class ClientesController implements IClientes {
         return false;
     }
 
+    /**
+     * Remove o cliente conforme o cpf informado
+     * 
+     * @param CPF
+     * @return
+     */
     public boolean remove(long CPF) {
         for (Cliente cliente : listaDeClientes) {
             if (cliente.getCpf() == CPF) {

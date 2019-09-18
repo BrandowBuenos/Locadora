@@ -7,8 +7,6 @@ import LocacoesController.java;
 
 import java.util.Scanner;
 
-import javax.swing.plaf.synth.SynthSplitPaneUI;
-
 /**
  * App
  */
@@ -133,7 +131,7 @@ public class App {
 
     }
 
-    public static void cadastrarCliente() { // OK
+    public static void cadastrarCliente() {
         Cliente novoCliente;
 
         int option;
@@ -191,19 +189,20 @@ public class App {
         } while (option != 0);
     }
 
-    public static void removerCliente() { // OK
+    public static void removerCliente() {
         System.out.println("\n- Remover Cliente- ");
         System.out.print("  ● Informe o CPF: ");
         long cpf = input.nextLong();
+        input.nextLine();
 
         if (listaDeClientes.remove(cpf) == true) {
-            System.out.println("O cliente foi removido com sucesso !");
+            System.out.println("\n   ➜ O cliente foi removido com sucesso !");
         } else if (listaDeClientes.remove(cpf) == false) {
-            System.out.println("A exclusão falhou !");
+            System.out.println("\n   ➜ A exclusão falhou !");
         }
     }
 
-    public static void modificarCliente() { // OK
+    public static void modificarCliente() {
         Cliente clienteEditado;
 
         System.out.println("\n- Modificar dados de cliente- ");
@@ -212,14 +211,14 @@ public class App {
         long cpf = input.nextLong();
         input.nextLine();
 
-        Cliente clienteAntigo = listaDeClientes.get(cpf);
-
         if (listaDeClientes.get(cpf) == null) {
             System.out.println("\n   ➜ Não existe nenhum cliente cadastrado com este CPF!\n");
 
         } else {
 
             System.out.println("\n  ➜ Cliente a ser editado: ");
+
+            Cliente clienteAntigo = listaDeClientes.get(cpf);
             System.out.println(clienteAntigo);
 
             System.out.print("  ● Novo nome: ");
@@ -246,7 +245,7 @@ public class App {
         }
     }
 
-    public static void consultarDadosPorCPF() { // OK
+    public static void consultarDadosPorCPF() {
 
         System.out.println("\n- Dados do Cliente por CPF - ");
         System.out.print("  ● Informe o CPF: ");
@@ -262,7 +261,7 @@ public class App {
 
     }
 
-    public static void exibirResumoDeTodosClientes() { // OK
+    public static void exibirResumoDeTodosClientes() {
         if (listaDeClientes.getResumoInfo() == null) {
             System.out.println("\n   ➜ Não existem clientes cadastrados!");
         } else {
@@ -270,7 +269,7 @@ public class App {
         }
     }
 
-    public static void exibirTodosClientes() { // OK
+    public static void exibirTodosClientes() {
         if (listaDeClientes.getInfo() == null) {
             System.out.println("\n   ➜ Não existem clientes cadastrados!");
         } else {
@@ -360,15 +359,23 @@ public class App {
                 }
 
                 listaDeVeiculos.add(novoCarro);
-                System.out.println("\nCarro cadastrado com sucesso !");
+                System.out.println("\n   ➜ Carro cadastrado com sucesso !");
                 break;
 
             case 2:
 
                 Caminhao novoCaminhao;
                 System.out.println("\n+ Cadastro de novo caminhão ");
-                System.out.print("  ● Placa: ");
-                String placaCaminhao = input.nextLine();
+
+                String placaCaminhao;
+                do {
+                    System.out.print("  ● Placa: ");
+                    placaCaminhao = input.nextLine();
+
+                    if (listaDeVeiculos.existe(placaCaminhao)) {
+                        System.out.println("\n   ➜ Placa já existente ! Por favor, informe uma nova Placa\n");
+                    }
+                } while (listaDeVeiculos.existe(placaCaminhao) == true);
 
                 System.out.print("  ● Ano: ");
                 int anoCaminhao = input.nextInt();
@@ -401,15 +408,23 @@ public class App {
                 }
 
                 listaDeVeiculos.add(novoCaminhao);
-                System.out.println("\nCaminhão cadastrado com sucesso !");
+                System.out.println("\n   ➜ Caminhão cadastrado com sucesso !");
                 break;
 
             case 3:
 
                 Onibus novoOnibus;
                 System.out.println("\n+ Cadastro de novo Ônibus ");
-                System.out.print("  ● Placa: ");
-                String placaOnibus = input.next();
+
+                String placaOnibus;
+                do {
+                    System.out.print("  ● Placa: ");
+                    placaOnibus = input.nextLine();
+
+                    if (listaDeVeiculos.existe(placaOnibus)) {
+                        System.out.println("\n   ➜ Placa já existente ! Por favor, informe uma nova Placa\n");
+                    }
+                } while (listaDeVeiculos.existe(placaOnibus) == true);
 
                 System.out.print("  ● Ano: ");
                 int anoOnibus = input.nextInt();
@@ -460,7 +475,7 @@ public class App {
                 }
 
                 listaDeVeiculos.add(novoOnibus);
-                System.out.println("\nÔnibus cadastrado com sucesso !");
+                System.out.println("\n   ➜ Ônibus cadastrado com sucesso !");
                 break;
 
             default:
@@ -478,26 +493,27 @@ public class App {
 
     }
 
-    public static void removerVeiculo() { // OK
+    public static void removerVeiculo() {
         System.out.println("\n- Remover Veículo- ");
         System.out.print("  ● Placa: ");
         String placa = input.nextLine();
 
         if (listaDeVeiculos.remove(placa) == true) {
-            System.out.println("O veículo foi removido com sucesso !");
+            System.out.println("\n   ➜ O veículo foi removido com sucesso !");
         } else if (listaDeVeiculos.remove(placa) == false) {
-            System.out.println("A exclusão falhou !");
+            System.out.println("\n   ➜ A exclusão falhou !");
         }
     }
 
     public static void modificarVeiculo() {
 
-        System.out.print("\n   ➜   Informe qual o tipo de veículo que deseja cadastrar: ");
+        System.out.print("\n   ➜   Informe qual o tipo de veículo que deseja modificar: ");
 
         System.out.println("\n    1. Carro ");
         System.out.println("    2. Caminhão ");
         System.out.println("    3. Ônibus ");
 
+        int option;
         do {
             System.out.print("\n   ➜   Opção: ");
             option = input.nextInt();
@@ -506,99 +522,136 @@ public class App {
 
         switch (option) {
         case 1:
-            System.out.print("\nInforme a placa do carro: ");
+
+            System.out.print("\n  ● Informe a placa do carro: ");
+
             String placaCarro = input.nextLine();
 
-            if (listaDeVeiculos.get(placaCarro) instanceof Carro) {
-                Carro carroEditado = (Carro) listaDeVeiculos.get(placaCarro);
+            if (listaDeVeiculos.get(placaCarro) == null) {
+                System.out.println("\n   ➜ Não existe nenhum carro cadastrado com esta placa!\n");
 
-                System.out.print("\n- Carro a ser editado: " + carroEditado);
-                System.out.print("\n+ Digite a nova placa: ");
-                String placaEditada = input.nextLine();
+            } else {
 
-                System.out.print("+ Digite a nova diária: ");
-                float diariaEditada = input.nextFloat();
-                input.nextLine();
+                if (listaDeVeiculos.get(placaCarro) instanceof Carro) {
+                    Carro carroEditado = (Carro) listaDeVeiculos.get(placaCarro);
 
-                int ano = carroEditado.getAno();
-                int numerodepassageiros = carroEditado.getNumeroDePassageiros();
-                int numerodeportas = carroEditado.getNumeroDePortas();
-                float mediadekml = carroEditado.getMediaDeKml();
-                boolean arcondicionado = carroEditado.getArCondicionado();
+                    System.out.print("\n- Carro a ser editado: " + carroEditado);
+                    System.out.print("\n  ● Nova placa: ");
+                    String placaEditada = input.nextLine();
 
-                carroEditado = new Carro(placaEditada, ano, diariaEditada);
+                    System.out.print("  ● Nova diária: ");
+                    float diariaEditada = input.nextFloat();
+                    input.nextLine();
 
-                carroEditado.setNumeroDePassageiros(numerodepassageiros);
-                carroEditado.setNumeroDePortas(numerodeportas);
-                carroEditado.setMediaDeKml(mediadekml);
-                carroEditado.setArCondicionado(arcondicionado);
+                    int ano = carroEditado.getAno();
+                    int numerodepassageiros = carroEditado.getNumeroDePassageiros();
+                    int numerodeportas = carroEditado.getNumeroDePortas();
+                    float mediadekml = carroEditado.getMediaDeKml();
+                    boolean arcondicionado = carroEditado.getArCondicionado();
 
-                System.out.println("\n+ Modificado com sucesso ? " + listaDeVeiculos.set(placaCarro, carroEditado));
+                    carroEditado = new Carro(placaEditada, ano, diariaEditada);
 
+                    carroEditado.setNumeroDePassageiros(numerodepassageiros);
+                    carroEditado.setNumeroDePortas(numerodeportas);
+                    carroEditado.setMediaDeKml(mediadekml);
+                    carroEditado.setArCondicionado(arcondicionado);
+
+                    if (listaDeVeiculos.set(placaCarro, carroEditado) == true) {
+                        System.out.println(
+                                "\n   ➜ O carro de placa " + carroEditado.getPlaca() + " foi editado com sucesso !");
+                    } else if (listaDeVeiculos.set(placaCarro, carroEditado) == false) {
+                        System.out.println("\n   ➜ Não foi possível editar este carro !");
+                    }
+
+                }
             }
 
             break;
 
         case 2:
-            System.out.print("\nInforme a placa do Caminhão: ");
+
+            System.out.print("\n  ● Informe a placa do caminhão: ");
+
             String placaCaminhao = input.nextLine();
 
-            if (listaDeVeiculos.get(placaCaminhao) instanceof Caminhao) {
-                Caminhao caminhaoEditado = (Caminhao) listaDeVeiculos.get(placaCaminhao);
+            if (listaDeVeiculos.get(placaCaminhao) == null) {
+                System.out.println("\n   ➜ Não existe nenhum caminhão cadastrado com esta placa!\n");
 
-                System.out.print("\n- Caminhão a ser editado: " + caminhaoEditado);
-                System.out.print("\n+ Digite a nova placa: ");
-                String placaEditada = input.nextLine();
+            } else {
 
-                System.out.print("+ Digite a nova diária: ");
-                float diariaEditada = input.nextFloat();
-                input.nextLine();
+                if (listaDeVeiculos.get(placaCaminhao) instanceof Caminhao) {
+                    Caminhao caminhaoEditado = (Caminhao) listaDeVeiculos.get(placaCaminhao);
 
-                int ano = caminhaoEditado.getAno();
-                int numerodeeixos = caminhaoEditado.getNumeroDeEixos();
-                float cargamaxima = caminhaoEditado.getCargaMaxima();
+                    System.out.print("\n- Caminhão a ser editado: " + caminhaoEditado);
+                    System.out.print("\n  ● Nova placa: ");
+                    String placaEditada = input.nextLine();
 
-                caminhaoEditado = new Caminhao(placaEditada, ano, diariaEditada);
+                    System.out.print("  ● Nova diária: ");
+                    float diariaEditada = input.nextFloat();
+                    input.nextLine();
 
-                caminhaoEditado.setNumeroDeEixos(numerodeeixos);
-                caminhaoEditado.setCargaMaxima(cargamaxima);
+                    int ano = caminhaoEditado.getAno();
+                    int numerodeeixos = caminhaoEditado.getNumeroDeEixos();
+                    float cargamaxima = caminhaoEditado.getCargaMaxima();
 
-                System.out
-                        .println("\n+ Modificado com sucesso ? " + listaDeVeiculos.set(placaCaminhao, caminhaoEditado));
+                    caminhaoEditado = new Caminhao(placaEditada, ano, diariaEditada);
 
+                    caminhaoEditado.setNumeroDeEixos(numerodeeixos);
+                    caminhaoEditado.setCargaMaxima(cargamaxima);
+
+                    if (listaDeVeiculos.set(placaCaminhao, caminhaoEditado) == true) {
+                        System.out.println("\n   ➜ O caminhão de placa " + caminhaoEditado.getPlaca()
+                                + " foi editado com sucesso !");
+                    } else if (listaDeVeiculos.set(placaCaminhao, caminhaoEditado) == false) {
+                        System.out.println("\n   ➜ Não foi possível editar este caminhao !");
+                    }
+                }
             }
+
             break;
 
         case 3:
-            System.out.print("\nInforme a placa do Ônibus: ");
+            System.out.print("\n  ● Informe a placa do ônibus: ");
+
             String placaOnibus = input.nextLine();
 
-            if (listaDeVeiculos.get(placaOnibus) instanceof Onibus) {
-                Onibus onibusEditado = (Onibus) listaDeVeiculos.get(placaOnibus);
+            if (listaDeVeiculos.get(placaOnibus) == null) {
+                System.out.println("\n   ➜ Não existe nenhum ônibus cadastrado com esta placa!\n");
 
-                System.out.print("\n- Ônibus a ser editado: " + onibusEditado);
-                System.out.print("\n+ Digite a nova placa: ");
-                String placaEditada = input.nextLine();
+            } else {
 
-                System.out.print("+ Digite a nova diária: ");
-                float diariaEditada = input.nextFloat();
-                input.nextLine();
+                if (listaDeVeiculos.get(placaOnibus) instanceof Onibus) {
+                    Onibus onibusEditado = (Onibus) listaDeVeiculos.get(placaOnibus);
 
-                int ano = onibusEditado.getAno();
-                int numerodepassageiros = onibusEditado.getNumeroDePassageiros();
-                String categoria = onibusEditado.getCategoria();
-                boolean wifi = onibusEditado.getWifi();
-                boolean arcondicionado = onibusEditado.getArCondicionado();
+                    System.out.print("\n- Ônibus a ser editado: " + onibusEditado);
+                    System.out.print("\n  ● Nova placa: ");
+                    String placaEditada = input.nextLine();
 
-                onibusEditado = new Onibus(placaEditada, ano, diariaEditada);
+                    System.out.print("  ● Nova diária: ");
+                    float diariaEditada = input.nextFloat();
+                    input.nextLine();
 
-                onibusEditado.setNumeroDePassageiros(numerodepassageiros);
-                onibusEditado.setCategoria(categoria);
-                onibusEditado.setWifi(wifi);
-                onibusEditado.setArCondicionado(arcondicionado);
+                    int ano = onibusEditado.getAno();
+                    int numerodepassageiros = onibusEditado.getNumeroDePassageiros();
+                    String categoria = onibusEditado.getCategoria();
+                    boolean wifi = onibusEditado.getWifi();
+                    boolean arcondicionado = onibusEditado.getArCondicionado();
 
-                System.out.println("\n+ Modificado com sucesso ? " + listaDeVeiculos.set(placaOnibus, onibusEditado));
+                    onibusEditado = new Onibus(placaEditada, ano, diariaEditada);
 
+                    onibusEditado.setNumeroDePassageiros(numerodepassageiros);
+                    onibusEditado.setCategoria(categoria);
+                    onibusEditado.setWifi(wifi);
+                    onibusEditado.setArCondicionado(arcondicionado);
+
+                    if (listaDeVeiculos.set(placaOnibus, onibusEditado) == true) {
+                        System.out.println(
+                                "\n   ➜ O ônibus de placa " + onibusEditado.getPlaca() + " foi editado com sucesso !");
+                    } else if (listaDeVeiculos.set(placaOnibus, onibusEditado) == false) {
+                        System.out.println("\n   ➜ Não foi possível editar este ônibus !");
+                    }
+
+                }
             }
             break;
 
@@ -611,15 +664,30 @@ public class App {
 
         System.out.println("\n- Dados do Veículo por Placa - ");
         System.out.print("  ● Informe a Placa: ");
-        System.out.println(listaDeVeiculos.getInfo(input.nextLine()));
+        String placa = input.nextLine();
+
+        if (listaDeVeiculos.getInfo(placa) == null) {
+            System.out.println("\n  ➜ Não existe veículo cadastrado com este Placa!");
+        } else {
+            System.out.println("\n  ➜ Veículo encontrado: \n" + listaDeVeiculos.getInfo(placa));
+        }
+
     }
 
     public static void exibirResumoDeTodosVeiculos() {
-        System.out.println(listaDeVeiculos.getResumoInfo());
+        if (listaDeVeiculos.getResumoInfo() == null) {
+            System.out.println("\n   ➜ Não existem veículos cadastrados!");
+        } else {
+            System.out.println("\n  ➜ Veículos encontrados: \n" + listaDeVeiculos.getResumoInfo());
+        }
     }
 
     public static void exibirTodosVeiculos() {
-        System.out.println(listaDeVeiculos.getInfo());
+        if (listaDeVeiculos.getInfo() == null) {
+            System.out.println("\n   ➜ Não existem veículos cadastrados!");
+        } else {
+            System.out.println("\n  ➜ Veículos encontrados: \n" + listaDeVeiculos.getInfo());
+        }
     }
 
     /*---------------------------------------------------------------------------------------*/
@@ -627,48 +695,78 @@ public class App {
     public static void adicionarNovaLocacao() {
         Locacao novaLocacao;
 
-        System.out.println("\n- Adicionar Locação -");
+        int option;
+        do {
+            System.out.println("\n- Adicionar Locação -");
 
-        System.out.print("+ CPF do cliente: ");
-        Cliente clientelocador = listaDeClientes.get(input.nextLong());
-        System.out.println(clientelocador);
-        input.nextLine();
+            long cpf;
+            do {
+                System.out.print("  ● CPF do cliente: ");
+                cpf = input.nextLong();
+                input.nextLine();
 
-        System.out.print("+ Placa do veículo: ");
-        Veiculo veiculolocado = listaDeVeiculos.get(input.nextLine());
-        System.out.println(veiculolocado);
+            } while (listaDeClientes.get(cpf) == null);
 
-        novaLocacao = new Locacao(clientelocador, veiculolocado);
+            Cliente clientelocador = listaDeClientes.get(cpf);
+            System.out.println(clientelocador);
 
-        System.out.print("+ Data de Início: ");
-        novaLocacao.setDataInicio(input.nextLine());
+            String placa;
+            do {
+                System.out.print("  ● Placa do veículo: ");
+                placa = input.nextLine();
+            } while (listaDeVeiculos.get(placa) == null);
 
-        System.out.print("+ Data Final: ");
-        novaLocacao.setDataFinal(input.nextLine());
+            Veiculo veiculolocado = listaDeVeiculos.get(placa);
+            System.out.println(veiculolocado);
 
-        System.out.print("+ Adicionar seguro ? (S ou N): ");
-        char resposta = Character.toUpperCase(input.next().charAt(0));
-        if (resposta == 'S') {
-            novaLocacao.setSeguro(true);
-        } else if (resposta == 'N') {
-            novaLocacao.setSeguro(false);
-        }
+            novaLocacao = new Locacao(clientelocador, veiculolocado);
 
-        listaDeLocacoes.add(novaLocacao);
+            System.out.print("  ● Data de Início: ");
+            novaLocacao.setDataInicio(input.nextLine());
 
-        System.out.println("\n+ Deseja continuar adicionando mais Locações ?");
-        System.out.println("- Digite 1 para continuar adicionando");
-        System.out.println("- Digite 0 para sair do cadastro");
-        int option = input.nextInt();
-        input.nextLine();
+            System.out.print("  ● Data Final: ");
+            novaLocacao.setDataFinal(input.nextLine());
 
+            char resposta;
+            do {
+                System.out.print("  ● Adicionar seguro ? (S ou N): ");
+                resposta = Character.toUpperCase(input.next().charAt(0));
+                input.nextLine();
+
+            } while (resposta != 'S' && resposta != 'N');
+
+            if (resposta == 'S') {
+                novaLocacao.setSeguro(true);
+            } else if (resposta == 'N') {
+                novaLocacao.setSeguro(false);
+            }
+
+            listaDeLocacoes.add(novaLocacao);
+
+            System.out.println("\n  ⟲  Deseja continuar adicionando mais alocações  ?");
+            System.out.println("      - Digite 1 para continuar adicionando");
+            System.out.println("      - Digite 0 para sair do cadastro\n");
+            System.out.print("   ➜ Opção: ");
+            option = input.nextInt();
+            input.nextLine();
+
+        } while (option != 0);
     }
 
     public static void removerLocacao() {
         System.out.println("\n- Remover Locação- ");
-        System.out.print("+ Informe o código: ");
-        System.out.println("\nRemovido com sucesso? " + listaDeLocacoes.remove(input.nextInt()));
+        System.out.print("  ● Código: ");
+        int codigo = input.nextInt();
+        input.nextLine();
 
+        if (listaDeLocacoes.remove(codigo) == true) {
+            System.out.println("\n   ➜ A locação foi removido com sucesso !");
+            App.menu();
+
+        } else if (listaDeLocacoes.remove(codigo) == false) {
+            System.out.println("\n   ➜ A exclusão falhou !");
+            App.menu();
+        }
     }
 
     public static void modificarLocacao() {
@@ -677,51 +775,89 @@ public class App {
 
         System.out.println("\n- Modificar dados de locacação- ");
 
-        System.out.print("+ Código da locação: ");
+        System.out.print("  ● Código da locação: ");
         int codigo = input.nextInt();
-
-        Locacao locacaoAntiga = listaDeLocacoes.get(codigo);
-        System.out.println("\nLocacao a ser editado: " + locacaoAntiga);
         input.nextLine();
 
-        System.out.print("+ CPF do cliente: ");
-        Cliente clientelocador = listaDeClientes.get(input.nextLong());
-        System.out.println(clientelocador);
-        input.nextLine();
+        if (listaDeLocacoes.get(codigo) == null) {
+            System.out.println("\n   ➜ Não existe nenhuma locação cadastrado com este código!\n");
 
-        System.out.print("+ Placa do veículo: ");
-        Veiculo veiculolocado = listaDeVeiculos.get(input.nextLine());
-        System.out.println(veiculolocado);
+        } else {
 
-        System.out.print("+ Data de Início: ");
-        String datainicio = input.nextLine();
+            Locacao locacaoAntiga = listaDeLocacoes.get(codigo);
+            System.out.println("\n  ➜ Locação a ser editado: ");
+            System.out.println(locacaoAntiga);
 
-        System.out.print("+ Data final: ");
-        String datafinal = input.nextLine();
+            long cpf;
+            do {
+                System.out.print("  ● CPF do cliente: ");
+                cpf = input.nextLong();
+                input.nextLine();
 
-        System.out.print("+ Seguro ? (S ou N): ");
-        char resposta = Character.toUpperCase(input.next().charAt(0));
-        input.nextLine();
+            } while (listaDeClientes.get(cpf) == null);
 
-        if (resposta == 'S') {
-            locacaoAntiga.setSeguro(true);
-        } else if (resposta == 'N') {
-            locacaoAntiga.setSeguro(false);
+            Cliente clientelocador = listaDeClientes.get(cpf);
+            System.out.println(clientelocador);
+
+            String placa;
+            do {
+                System.out.print("  ● Placa do veículo: ");
+                placa = input.nextLine();
+            } while (listaDeVeiculos.get(placa) == null);
+
+            Veiculo veiculolocado = listaDeVeiculos.get(placa);
+            System.out.println(veiculolocado);
+
+            System.out.print("+ Data de Início: ");
+            String datainicio = input.nextLine();
+
+            System.out.print("+ Data final: ");
+            String datafinal = input.nextLine();
+
+            char resposta;
+            do {
+                System.out.print("+ Seguro ? (S ou N): ");
+                resposta = Character.toUpperCase(input.next().charAt(0));
+                input.nextLine();
+            } while (resposta != 'S' && resposta != 'N');
+
+            if (resposta == 'S') {
+                locacaoAntiga.setSeguro(true);
+            } else if (resposta == 'N') {
+                locacaoAntiga.setSeguro(false);
+            }
+
+            locacaoEditada = new Locacao(clientelocador, veiculolocado, datainicio, datafinal);
+
+            if (listaDeLocacoes.set(codigo, locacaoEditada) == true) {
+                System.out.println("\n   ➜ A locação de código " + locacaoEditada.getCodigoDaLocacao()
+                        + " foi editado com sucesso !");
+            } else if (listaDeLocacoes.set(codigo, locacaoEditada) == false) {
+                System.out.println("\n   ➜ Não foi possível editar esta locação !");
+            }
         }
-
-        locacaoEditada = new Locacao(clientelocador, veiculolocado, datainicio, datafinal);
-
-        System.out.println("\n+ Modificado com sucesso ? " + listaDeLocacoes.set(codigo, locacaoEditada));
     }
 
     public static void consultarLocacaoPorCodigo() {
         System.out.println("\n- Dados da Locação por código - ");
-        System.out.print("+ Informe o código: ");
-        System.out.println(listaDeLocacoes.getInfo(input.nextInt()));
+        System.out.print("  ● Informe o código: ");
+
+        int codigo = input.nextInt();
+        input.nextLine();
+
+        if (listaDeLocacoes.getInfo(codigo) == null) {
+            System.out.println("\n  ➜ Não existe locações cadastrado com este código!");
+        } else {
+            System.out.println("\n  ➜ Locação encontrado: \n" + listaDeLocacoes.getInfo(codigo));
+        }
     }
 
     public static void exibirTodasLocacao() {
-        System.out.println(listaDeLocacoes.getInfo());
+        if (listaDeLocacoes.getInfo() == null) {
+            System.out.println("\n   ➜ Não existem locações cadastrados!");
+        } else {
+            System.out.println("\n  ➜ Locações encontrados: \n" + listaDeLocacoes.getInfo());
+        }
     }
 
     public static void main(String[] args) {
